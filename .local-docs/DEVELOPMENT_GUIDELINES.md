@@ -29,7 +29,9 @@ Last updated: 2026-11-19
 - Prices render both currencies; visibility is controlled by `<html data-currency>`.
 
 ## Styling
-- Colors, fonts, radii only through theme tokens in `globals.css`. No raw hex in components.
+- **Single source for brand values:** colors, radii and font roles live only in the `@theme` blocks of `src/app/globals.css`; font files are loaded in `src/app/fonts.ts`. No raw hex or font names in components.
+- **Spacing unit is 1px** (`--spacing: 1px`): `p-16` = 16px, `gap-24` = 24px, `size-44` = 44px, `max-w-1360` = 1360px. Write the pixel value directly; avoid `[..px]` arbitrary values for spacing/sizing. Named sizes (`max-w-6xl`, `w-full`, `h-px`) are unaffected.
+- Local CSS files are imported from TS (`import "@/styles/motion.css"` in the root layout), not with CSS `@import` — the `@tailwindcss/turbopack` loader fails to resolve them in dev.
 - Mobile-first; verify at 360px.
 - Respect `prefers-reduced-motion`.
 

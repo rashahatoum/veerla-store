@@ -41,8 +41,12 @@ Do not put secrets, passwords, tokens, real customer details or private phone nu
 ## Visual identity
 
 - Match the supplied VEERLA brand reference: premium, feminine, warm, soft, understated; feather and delicate butterfly motifs used sparingly.
-- Provisional palette (must be calibrated against brand assets): deep plum `#31051F`, dusty mauve `#89505B`, rose nude `#D5A293`, champagne `#E8CCBA`, ivory `#F8EBE2`; restrained metallic-gold accents.
-- Typography: Marcellus for English display headings, Tajawal for Arabic. Keep typography legible and avoid excessive ornamentation.
+- **Home page source of truth:** `.local-docs/HOME_SPEC.md` + `.local-docs/design-reference/*.dc.html` + the owner's annotated screenshots (owner notes win on conflict). Brand images live in `public/assets/imgs/veerla/` (the spec's `public/images/veerla/` path is outdated).
+- Palette: tokens from HOME_SPEC §2 in `src/app/globals.css` (`plum-950…700`, `mauve-600/500`, `gold-500/300/700`, `nude-100`, `ivory`, …). Gold `#C9A46C` is never text on light backgrounds — use `gold-700`.
+- Typography: Amiri (Arabic headings), IBM Plex Sans Arabic (body), Cinzel (small spaced Latin labels), Cormorant Garamond italic (soft English phrases).
+- Motion: CSS only (`src/styles/motion.css`), no animation libraries; always honour `prefers-reduced-motion`; content visible without JS.
+- Theme: all colors and font roles in the `@theme` blocks of `src/app/globals.css` (font files in `src/app/fonts.ts`). **Tailwind spacing unit is 1px** (`p-16` = 16px) — see DEVELOPMENT_GUIDELINES.md → Styling.
+- Dev machine: the project is on a mechanical HDD; `turbopackFileSystemCacheForDev` is disabled in `next.config.ts` to stop disk thrashing. Expect slower first compiles; verify visuals with a production build (`next build && next start`) when in doubt.
 - Storefront: mobile-first, Arabic RTL, accessible, product photography first. Dashboard: clarity, speed, legible tables and financial numbers before decoration.
 - Centralize design tokens; do not hardcode brand colors across components.
 
@@ -99,3 +103,5 @@ Do not put secrets, passwords, tokens, real customer details or private phone nu
 - Keep `.local-docs/PROJECT_STATUS.md` concise and current; document only real decisions in `DECISIONS.md`.
 - Update only relevant docs after implementing approved features. Never invent API contracts.
 - Never commit, push or merge unless explicitly asked.
+- Remote: `origin` → `https://github.com/rashahatoum/veerla-store.git`, default branch `main`.
+- Workflow agreed with the owner: one temporary branch per idea/feature (`feat/…`, `fix/…`, `docs/…`, `chore/…`) → clear Conventional Commit messages describing exactly what was done → push the branch → merge into `main` with `--no-ff` → push `main` → delete the branch locally and on the remote. Do this when the owner asks to publish the work.

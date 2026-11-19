@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Veerla Store — الرئيسية</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&amp;family=Cinzel:wght@400;500;600&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&amp;family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FCF7F2}
+a{color:#5A1F45}a:hover{color:#2A0A20}
+*{box-sizing:border-box}
+h1,h2{font-family:'Amiri',serif;letter-spacing:0}
+
+/* 2 · living velvet */
+.velvet{animation:velvetBreath 26s ease-in-out infinite alternate;transform-origin:60% 40%;will-change:transform}
+@keyframes velvetBreath{from{transform:scale(1.06)}to{transform:scale(1.13) translate(-1.6%,1.2%)}}
+.velvet-light{position:absolute;inset:0;pointer-events:none;background:radial-gradient(560px circle at var(--mx,68%) var(--my,32%),rgba(255,170,205,.20),rgba(255,170,205,0) 62%);mix-blend-mode:screen}
+.silk-drift{animation:silkDrift 32s ease-in-out infinite alternate}
+@keyframes silkDrift{from{transform:scale(1.04)}to{transform:scale(1.12) translateX(-2%)}}
+
+/* 1 · the feather writes the logo */
+.logo-stage{position:relative;width:min(540px,80vw);aspect-ratio:967/625}
+.logo-stage img{position:absolute;inset:0;width:100%;height:100%;display:block}
+.lg-feather{transform-origin:46% 38%;animation:featherFall 1.9s cubic-bezier(.33,0,.2,1) .2s both}
+@keyframes featherFall{0%{opacity:0;transform:translate(20%,-90%) rotate(-30deg)}22%{opacity:1;transform:translate(-9%,-62%) rotate(14deg)}48%{transform:translate(7%,-30%) rotate(-9deg)}74%{transform:translate(-3%,-9%) rotate(4deg)}100%{opacity:1;transform:none}}
+.lg-words{animation:writeIn 1.5s cubic-bezier(.65,0,.35,1) 1.8s both}
+@keyframes writeIn{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.lg-pen{position:absolute;left:2%;top:64%;width:18px;height:18px;margin:-9px;border-radius:50%;background:radial-gradient(circle,#FFF6DD 0,#E2C08A 38%,rgba(226,192,138,0) 70%);box-shadow:0 0 26px 10px rgba(255,214,150,.4);opacity:0;pointer-events:none;animation:penMove 1.5s cubic-bezier(.65,0,.35,1) 1.8s both}
+@keyframes penMove{0%{left:2%;top:64%;opacity:0}10%{opacity:1}35%{top:72%}62%{top:63%}88%{opacity:1}100%{left:97%;top:68%;opacity:0}}
+.lg-sheen{position:absolute;inset:0;pointer-events:none;-webkit-mask:url(/_blob/201ecee33c2e20bf3fba0a02d36cad3f) center/100% 100% no-repeat;mask:url(/_blob/201ecee33c2e20bf3fba0a02d36cad3f) center/100% 100% no-repeat;background:linear-gradient(105deg,rgba(255,255,255,0) 38%,rgba(255,249,228,.95) 50%,rgba(255,255,255,0) 62%) no-repeat;background-size:300% 100%;background-position:120% 0;animation:sheen 1.4s ease-out 3.35s both}
+@keyframes sheen{from{background-position:120% 0}to{background-position:-20% 0}}
+.logo-stage:hover .lg-sheen{animation:sheenHover 1.2s ease-out both}
+@keyframes sheenHover{from{background-position:120% 0}to{background-position:-20% 0}}
+.rise{animation:rise .9s ease-out both}
+.d1{animation-delay:.8s}.d2{animation-delay:1s}.d3{animation-delay:1.2s}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* 3 · gold sheen on buttons */
+.btn-gold{position:relative;overflow:hidden;transition:box-shadow .4s ease,transform .4s ease}
+.btn-gold::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,rgba(255,255,255,0) 30%,rgba(255,250,236,.8) 50%,rgba(255,255,255,0) 70%);transform:translateX(130%);pointer-events:none}
+.btn-gold:hover{box-shadow:0 12px 32px rgba(201,164,108,.38);transform:translateY(-1px)}
+.btn-gold:hover::after{transform:translateX(-130%);transition:transform .9s ease}
+
+/* 4 · silk edges + reveal */
+.wave-box{position:absolute;left:0;right:0;height:64px;overflow:hidden;pointer-events:none}
+.wave{position:absolute;top:0;left:0;width:200%;height:100%;animation:waveDrift 30s linear infinite}
+.wave.slow{animation-duration:46s;animation-direction:reverse}
+@keyframes waveDrift{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+@supports (animation-timeline: view()){
+  .reveal{animation:silkReveal linear both;animation-timeline:view();animation-range:entry 5% cover 30%}
+  @keyframes silkReveal{from{opacity:0;clip-path:inset(0 0 24% 0);transform:translateY(42px)}to{opacity:1;clip-path:inset(0 0 0 0);transform:none}}
+}
+@media (prefers-reduced-motion: reduce){
+  .velvet,.silk-drift,.lg-feather,.lg-words,.lg-sheen,.rise,.wave,.reveal,.logo-stage:hover .lg-sheen{animation:none!important}
+  .lg-pen{display:none}
+}
+</style>
+</helmet>
+<div dir="rtl" style="font-family: 'IBM Plex Sans Arabic', sans-serif; color: #2A0A20; background: #FCF7F2; width: 100%; overflow: hidden">
+
+<dc-import name="Header" hide-logo="{{ true }}" hint-size="100%,112px"></dc-import>
+
+<!-- HERO · living velvet + feather writes the logo -->
+<section onMouseMove="{{ onMove }}" style="position: relative; overflow: hidden; background: #1F0718; min-height: 780px">
+  <img class="velvet" src="/_blob/3a7e5be9049b37cb33767735b9e35e50" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(ellipse 70% 65% at 50% 42%, rgba(31,7,24,0.05) 0%, rgba(31,7,24,0.7) 100%)"></div>
+  <div class="velvet-light" ref="{{ setLight }}" aria-hidden="true"></div>
+  <div style="position: relative; max-width: 1360px; margin: 0 auto; padding: 40px 32px 128px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 18px">
+    <div class="rise" style="display: flex; align-items: center; gap: 14px; color: #E2C08A; font-size: 14px; font-weight: 500">
+      <span style="width: 36px; height: 1px; background: #C9A46C"></span>
+      <span>مجموعة شتاء 2026</span>
+      <span dir="ltr" style="font-family: 'Cinzel', serif; letter-spacing: 0.32em; font-size: 12px">Winter Edit</span>
+      <span style="width: 36px; height: 1px; background: #C9A46C"></span>
+    </div>
+    <div class="logo-stage" role="img" aria-label="Veerla Store">
+      <img class="lg-words" src="/_blob/74958292113ba53361358050132eaad6" alt="">
+      <img class="lg-feather" src="/_blob/5afbfae2f3e75855ff3b9cc0fb03d2fe" alt="">
+      <span class="lg-pen" aria-hidden="true"></span>
+      <span class="lg-sheen" aria-hidden="true"></span>
+    </div>
+    <h1 class="rise d1" style="margin: 4px 0 0; font-size: clamp(30px, 3.4vw, 48px); line-height: 1.5; font-weight: 400; color: #F8EEE6">نعومةٌ تليق بلحظاتكِ في البيت</h1>
+    <p class="rise d2" style="margin: 0; max-width: 520px; font-size: 17px; line-height: 1.9; color: #E6D2D4; font-weight: 300">ملابس منزلية فاخرة من المخمل والساتان، مصممة لتمنحكِ الدفء والأناقة في كل تفاصيل يومكِ.</p>
+    <div class="rise d3" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 10px">
+      <a href="Shop.dc.html" class="btn-gold" style="display: inline-flex; align-items: center; gap: 12px; background: #C9A46C; color: #2A0A20; text-decoration: none; padding: 0 36px; border-radius: 2px; font-size: 16px; font-weight: 600; min-height: 56px">تسوقي المجموعة
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
+      <a href="Shop.dc.html" style="display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(248,238,230,0.5); color: #F8EEE6; text-decoration: none; padding: 0 32px; border-radius: 2px; font-size: 16px; font-weight: 500; min-height: 56px; background: rgba(31,7,24,0.25)">اكتشفي الهدايا</a>
+    </div>
+  </div>
+  <div class="wave-box" aria-hidden="true" style="bottom: -1px">
+    <svg class="wave slow" viewBox="0 0 2880 64" preserveAspectRatio="none"><path d="M0 34 Q 360 4 720 34 T 1440 34 T 2160 34 T 2880 34 V64 H0 Z" fill="#F3E4D8" fill-opacity="0.45"/></svg>
+    <svg class="wave" viewBox="0 0 2880 64" preserveAspectRatio="none"><path d="M0 40 Q 360 14 720 40 T 1440 40 T 2160 40 T 2880 40 V64 H0 Z" fill="#F3E4D8"/></svg>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section style="background: #F3E4D8">
+  <div style="max-width: 1360px; margin: 0 auto; padding: 28px 32px 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px">
+    <sc-for list="{{ values }}" as="v" hint-placeholder-count="4">
+      <div style="display: flex; align-items: center; gap: 16px; justify-content: center">
+        <span style="width: 56px; height: 56px; flex: none; border-radius: 50%; border: 1px solid #C9A46C; display: flex; align-items: center; justify-content: center; color: #5A1F45">
+          <svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="{{ v.icon }}"/></svg>
+        </span>
+        <span style="display: flex; flex-direction: column; gap: 2px">
+          <strong style="font-size: 17px; font-weight: 600">{{ v.ar }}</strong>
+          <span dir="ltr" style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: #6E4A58; text-align: right">{{ v.en }}</span>
+        </span>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="reveal" style="max-width: 1360px; margin: 0 auto; padding: 88px 32px 40px">
+  <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 40px">
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <span style="color: #7E5E2E; font-size: 14px; font-weight: 500">تسوقي حسب الفئة</span>
+      <h2 style="margin: 0; font-size: clamp(32px, 3.4vw, 48px); font-weight: 400; line-height: 1.5">اختاري راحتكِ</h2>
+    </div>
+    <a href="Shop.dc.html" style="font-size: 15px; font-weight: 500; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 4px">عرض كل الفئات</a>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px">
+    <sc-for list="{{ cats }}" as="c" hint-placeholder-count="4">
+      <a href="Shop.dc.html" style="text-decoration: none; color: #2A0A20; display: flex; flex-direction: column; gap: 16px; align-items: center">
+        <span style="display: block; width: 100%; padding: 8px; border: 1px solid #E8CDBB; border-radius: 200px 200px 4px 4px">
+          <img src="{{ c.img }}" alt="{{ c.name }}" style="display: block; width: 100%; height: 360px; object-fit: cover; object-position: {{ c.pos }}; border-radius: 192px 192px 2px 2px">
+        </span>
+        <span style="font-family: 'Amiri', serif; font-size: 24px">{{ c.name }}</span>
+        <span style="font-size: 13px; color: #6E4A58; margin-top: -10px">{{ c.sub }}</span>
+      </a>
+    </sc-for>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="reveal" style="max-width: 1360px; margin: 0 auto; padding: 64px 32px 96px">
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; margin-bottom: 40px; text-align: center">
+    <svg aria-hidden="true" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#B08A4E" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 3.5C13 4 7 8.5 5.5 16.5"/><path d="M20.5 3.5c.5 7-4 13-12.5 13.5"/><path d="M4 20l4-3.5"/><path d="M11 10l3 .5M9 13l3.5.3M14 7.5l2.5.2"/></svg>
+    <h2 style="margin: 0; font-size: clamp(32px, 3.4vw, 48px); font-weight: 400; line-height: 1.5">قطعٌ اخترناها لكِ</h2>
+    <div role="tablist" aria-label="تصنيف المنتجات" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 8px; padding: 6px; border: 1px solid #E8CDBB; border-radius: 999px">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3">
+        <button type="button" role="tab" aria-selected="{{ t.sel }}" onClick="{{ t.pick }}" style="{{ t.style }}">{{ t.label }}</button>
+      </sc-for>
+    </div>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 32px 28px">
+    <sc-for list="{{ products }}" as="p" hint-placeholder-count="4">
+      <dc-import name="ProductCard" item="{{ p }}" hint-size="100%,520px"></dc-import>
+    </sc-for>
+  </div>
+  <div style="display: flex; justify-content: center; margin-top: 52px">
+    <a href="Shop.dc.html" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 40px; border: 1px solid #2A0A20; color: #2A0A20; text-decoration: none; font-size: 15px; font-weight: 600; border-radius: 2px">تسوقي كل المنتجات</a>
+  </div>
+</section>
+
+<!-- GIFT EDITORIAL · velvet panel -->
+<section class="reveal" style="max-width: 1360px; margin: 0 auto; padding: 0 32px 96px">
+  <div style="display: flex; flex-wrap: wrap; border-radius: 4px; overflow: hidden; background: #2A0A20">
+    <div style="flex: 1 1 480px; min-width: 0; position: relative; overflow: hidden">
+      <img class="velvet" src="/_blob/3a7e5be9049b37cb33767735b9e35e50" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+      <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(31,7,24,0.5)"></div>
+      <div style="position: relative; padding: clamp(36px, 5vw, 80px); display: flex; flex-direction: column; justify-content: center; gap: 20px; color: #F8EEE6; height: 100%">
+        <span style="color: #E2C08A; font-size: 14px; font-weight: 500">هدايا فيرلا</span>
+        <h2 style="margin: 0; font-size: clamp(34px, 3.6vw, 52px); font-weight: 400; line-height: 1.45">هديةٌ تُغلَّف<br>بالحب والتفاصيل</h2>
+        <p style="margin: 0; font-size: 17px; line-height: 1.9; color: #E6D2D4; max-width: 440px; font-weight: 300">صناديق هدايا جاهزة بلونها البرقوقي وشريطتها الذهبية، لتصل لمن تحبين كما لو أنكِ غلّفتِها بيدكِ.</p>
+        <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: 15px">
+          <sc-for list="{{ giftPoints }}" as="g" hint-placeholder-count="3">
+            <li style="display: flex; align-items: center; gap: 12px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E2C08A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>{{ g }}</li>
+          </sc-for>
+        </ul>
+        <a href="Shop.dc.html" class="btn-gold" style="align-self: flex-start; margin-top: 8px; display: inline-flex; align-items: center; min-height: 52px; padding: 0 32px; background: #C9A46C; color: #2A0A20; text-decoration: none; font-weight: 600; font-size: 15px; border-radius: 2px">جهّزي هديتكِ</a>
+      </div>
+    </div>
+    <div style="flex: 1 1 520px; min-width: 0; min-height: 480px; position: relative">
+      <img src="/_blob/276103acd78d9e95683bc28b5860c8fa" alt="صندوق هدايا فيرلا البرقوقي مع شريطة ساتان ذهبية" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+    </div>
+  </div>
+</section>
+
+<!-- GOLDEN FEATHER COLLECTION · silk -->
+<section style="position: relative; overflow: hidden; background: #C9989A">
+  <img class="silk-drift" src="/_blob/462ceb3fd896819805cb76a7f6b5b64f" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+  <div class="wave-box" aria-hidden="true" style="top: -1px; transform: scaleY(-1)">
+    <svg class="wave" viewBox="0 0 2880 64" preserveAspectRatio="none"><path d="M0 40 Q 360 14 720 40 T 1440 40 T 2160 40 T 2880 40 V64 H0 Z" fill="#FCF7F2"/></svg>
+  </div>
+  <div class="reveal" style="position: relative; max-width: 1240px; margin: 0 auto; padding: 128px 32px; display: flex; flex-wrap: wrap; align-items: stretch">
+    <div style="flex: 1 1 480px; min-width: 0; min-height: 440px; position: relative; border-radius: 4px 0 0 4px; overflow: hidden">
+      <img src="/_blob/e8aedb04be2458d016c8c86d6c39804a" alt="ريشة فيرلا الذهبية على مخمل برقوقي" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 40% center">
+    </div>
+    <div style="flex: 1 1 420px; min-width: 0; background: rgba(252,247,242,0.93); padding: clamp(32px, 5vw, 72px); display: flex; flex-direction: column; justify-content: center; gap: 18px; align-items: flex-start">
+      <span dir="ltr" style="font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 0.36em; color: #7E5E2E">The Golden Feather Edit</span>
+      <h2 style="margin: 0; font-size: clamp(34px, 3.6vw, 52px); font-weight: 400; line-height: 1.45">مجموعة الريشة الذهبية</h2>
+      <p style="margin: 0; font-size: 17px; line-height: 1.9; color: #5C3A48; max-width: 420px">خطوطٌ ذهبية مستوحاة من ريشتنا، على مخمل ناعم وساتان يلمع بهدوء. قطعٌ تشعركِ بالخفّة… كريشة.</p>
+      <p dir="ltr" style="margin: 0; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; color: #7E5E2E">Light as a feather, soft as velvet.</p>
+      <a href="Shop.dc.html" style="margin-top: 6px; display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 34px; background: #2A0A20; color: #F8EEE6; text-decoration: none; font-weight: 600; font-size: 15px; border-radius: 2px">اكتشفي المجموعة</a>
+    </div>
+  </div>
+  <div class="wave-box" aria-hidden="true" style="bottom: -1px">
+    <svg class="wave slow" viewBox="0 0 2880 64" preserveAspectRatio="none"><path d="M0 34 Q 360 4 720 34 T 1440 34 T 2160 34 T 2880 34 V64 H0 Z" fill="#FCF7F2" fill-opacity="0.5"/></svg>
+    <svg class="wave" viewBox="0 0 2880 64" preserveAspectRatio="none"><path d="M0 40 Q 360 14 720 40 T 1440 40 T 2160 40 T 2880 40 V64 H0 Z" fill="#FCF7F2"/></svg>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section class="reveal" style="max-width: 1360px; margin: 0 auto; padding: 88px 32px 104px">
+  <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 32px">
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <span style="color: #7E5E2E; font-size: 14px; font-weight: 500">شاركينا لحظتكِ</span>
+      <h2 style="margin: 0; font-size: clamp(30px, 3vw, 42px); font-weight: 400; line-height: 1.5">#فيرلا_في_البيت</h2>
+    </div>
+    <a href="#" style="font-size: 15px; font-weight: 500; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 4px">تابعينا على إنستغرام</a>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px">
+    <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="5">
+      <img src="{{ g.img }}" alt="{{ g.alt }}" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: {{ g.pos }}; border-radius: 4px; display: block">
+    </sc-for>
+  </div>
+</section>
+
+<!-- NEWSLETTER · velvet -->
+<section style="position: relative; overflow: hidden; background: #2A0A20; color: #F8EEE6">
+  <img class="velvet" src="/_blob/3a7e5be9049b37cb33767735b9e35e50" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 70%">
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(31,7,24,0.55)"></div>
+  <div class="wave-box" aria-hidden="true" style="top: -1px; transform: scaleY(-1)">
+    <svg class="wave slow" viewBox="0 0 2880 64" preserveAspectRatio="none"><path d="M0 34 Q 360 4 720 34 T 1440 34 T 2160 34 T 2880 34 V64 H0 Z" fill="#FCF7F2" fill-opacity="0.4"/></svg>
+    <svg class="wave" viewBox="0 0 2880 64" preserveAspectRatio="none"><path d="M0 40 Q 360 14 720 40 T 1440 40 T 2160 40 T 2880 40 V64 H0 Z" fill="#FCF7F2"/></svg>
+  </div>
+  <div style="position: relative; max-width: 760px; margin: 0 auto; padding: 120px 32px 96px; display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center">
+    <img src="/_blob/5afbfae2f3e75855ff3b9cc0fb03d2fe" alt="" aria-hidden="true" style="width: 200px; height: auto; margin: -24px 0 -56px">
+    <h2 style="margin: 0; font-size: clamp(32px, 3.4vw, 46px); font-weight: 400; line-height: 1.5">انضمي لعائلة فيرلا</h2>
+    <p style="margin: 0; font-size: 17px; color: #E6D2D4; line-height: 1.8; font-weight: 300">كوني أول من يعرف بالمجموعات الجديدة، واحصلي على خصم 10% على طلبكِ الأول.</p>
+    <form style="display: flex; flex-wrap: wrap; gap: 10px; width: 100%; max-width: 560px; margin-top: 12px">
+      <label for="nl-email" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">البريد الإلكتروني</label>
+      <input id="nl-email" type="email" placeholder="بريدكِ الإلكتروني" style="flex: 1 1 260px; min-height: 56px; padding: 0 20px; background: rgba(31,7,24,0.4); border: 1px solid rgba(248,238,230,0.45); border-radius: 2px; color: #F8EEE6; font-family: inherit; font-size: 15px">
+      <button type="button" class="btn-gold" style="flex: 0 0 auto; min-height: 56px; padding: 0 40px; background: #C9A46C; color: #2A0A20; border: 0; border-radius: 2px; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer">اشتركي</button>
+    </form>
+  </div>
+</section>
+
+<dc-import name="Footer" hint-size="100%,560px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":4900}}'>
+class Component extends DCLogic {
+  constructor(p) {
+    super(p);
+    this.state = { tab: 'new' };
+    this.light = null; this.raf = 0;
+    var self = this;
+    this.setLight = function (el) { self.light = el; };
+    this.onMove = function (e) {
+      if (!self.light) return;
+      var r = e.currentTarget.getBoundingClientRect();
+      var x = ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%';
+      var y = ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%';
+      if (self.raf) return;
+      self.raf = requestAnimationFrame(function () {
+        self.raf = 0;
+        if (self.light) { self.light.style.setProperty('--mx', x); self.light.style.setProperty('--my', y); }
+      });
+    };
+  }
+  componentWillUnmount() { if (this.raf) cancelAnimationFrame(this.raf); }
+  renderVals() {
+    var I = {
+      emb: '/_blob/c80b293200bd8fa46f7848cc7a60e3db', gift: '/_blob/276103acd78d9e95683bc28b5860c8fa',
+      tag: '/_blob/5158795b4e620cfa23669e9c174be6a5', silk: '/_blob/462ceb3fd896819805cb76a7f6b5b64f',
+      vel: '/_blob/3a7e5be9049b37cb33767735b9e35e50', fgold: '/_blob/e8aedb04be2458d016c8c86d6c39804a',
+      lvel: '/_blob/4b16294b80915913b78e1acffe82f545'
+    };
+    var all = {
+      robe: { name: 'روب الفراشة المخملي', sub: 'مخمل ناعم بتطريز ذهبي', price: '349', old: '420', badge: 'جديد', img: I.emb, img2: I.vel, pos: 'center', colors: ['#3D1030', '#824243', '#E3C3AE'] },
+      set: { name: 'طقم الساتان الوردي', sub: 'ساتان قابل للتنفس', price: '289', old: '', badge: '', img: I.silk, img2: I.tag, pos: '30% center', colors: ['#D59E8A', '#3D1030'] },
+      box: { name: 'صندوق هدية فيرلا', sub: 'روب + خف + بطاقة إهداء', price: '499', old: '', badge: 'هدية', img: I.gift, img2: I.lvel, pos: 'center', colors: ['#3D1030'] },
+      classic: { name: 'بيجاما المخمل الكلاسيكية', sub: 'مخمل دافئ بقصة مريحة', price: '319', old: '', badge: '', img: I.vel, img2: I.emb, pos: '60% center', colors: ['#3D1030', '#824243'] },
+      feather: { name: 'طقم الريشة الذهبية', sub: 'مخمل بطبعة ريشة ذهبية', price: '369', old: '399', badge: 'خصم', img: I.fgold, img2: I.vel, pos: '40% center', colors: ['#3D1030', '#C9A46C'] },
+      nude: { name: 'روب الساتان النود', sub: 'ساتان لامع بحزام', price: '279', old: '', badge: '', img: I.tag, img2: I.silk, pos: 'center 30%', colors: ['#E3C3AE', '#F7E4D6'] }
+    };
+    var sets = { new: ['robe', 'set', 'box', 'classic'], best: ['box', 'feather', 'nude', 'robe'], sale: ['feather', 'robe', 'classic', 'nude'] };
+    var self = this;
+    var tabsDef = [{ id: 'new', label: 'وصل حديثاً' }, { id: 'best', label: 'الأكثر مبيعاً' }, { id: 'sale', label: 'عروض خاصة' }];
+    var on = 'min-height: 44px; padding: 0 24px; border: 0; border-radius: 999px; background: #2A0A20; color: #F8EEE6; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer; transition: background .3s';
+    var off = 'min-height: 44px; padding: 0 24px; border: 0; border-radius: 999px; background: transparent; color: #5A1F45; font-family: inherit; font-size: 15px; font-weight: 500; cursor: pointer; transition: background .3s';
+    return {
+      onMove: this.onMove,
+      setLight: this.setLight,
+      values: [
+        { ar: 'نعومة فائقة', en: 'Extra Soft', icon: 'M20.5 3.5C13 4 7 8.5 5.5 16.5M20.5 3.5c.5 7-4 13-12.5 13.5M4 20l4-3.5M11 10l3 .5M9 13l3.5.3' },
+        { ar: 'قماش قابل للتنفس', en: 'Breathable', icon: 'M3 16c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0M3 20c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0M7 11V4M4.5 6.5L7 4l2.5 2.5M12 11V4M9.5 6.5L12 4l2.5 2.5M17 11V4M14.5 6.5L17 4l2.5 2.5' },
+        { ar: 'جودة تدوم', en: 'Premium Quality', icon: 'M6 3h12l3 6-9 12L3 9l3-6zM3 9h18M9 3l3 18M15 3l-3 18' },
+        { ar: 'راحة في البيت', en: 'Home Comfort', icon: 'M3 11l9-7 9 7v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-9zM12 17.5s-3-1.8-3-3.7a1.5 1.5 0 0 1 3-.6 1.5 1.5 0 0 1 3 .6c0 1.9-3 3.7-3 3.7z' }
+      ],
+      cats: [
+        { name: 'البيجامات', sub: 'مخمل · ساتان · قطن', img: I.vel, pos: '40% center' },
+        { name: 'الروبات', sub: 'للصباحات الهادئة', img: I.emb, pos: 'center' },
+        { name: 'أطقم الهدايا', sub: 'جاهزة للإهداء', img: I.gift, pos: '40% center' },
+        { name: 'الساتان', sub: 'لمعة هادئة وخفة', img: I.silk, pos: '35% center' }
+      ],
+      tabs: tabsDef.map(function (t) { return { label: t.label, sel: self.state.tab === t.id ? 'true' : 'false', style: self.state.tab === t.id ? on : off, pick: function () { self.setState({ tab: t.id }); } }; }),
+      products: sets[this.state.tab].map(function (k) { return all[k]; }),
+      giftPoints: ['تغليف فاخر بشريطة ساتان ذهبية', 'بطاقة إهداء برسالتكِ الخاصة', 'توصيل مباشر لمن تحبين'],
+      gallery: [
+        { img: I.silk, alt: 'حرير وردي', pos: '30% center' },
+        { img: I.fgold, alt: 'ريشة فيرلا الذهبية', pos: '35% center' },
+        { img: I.gift, alt: 'صندوق هدية', pos: '30% center' },
+        { img: I.vel, alt: 'مخمل برقوقي', pos: 'center' },
+        { img: I.tag, alt: 'بطاقة المنتج', pos: 'center 20%' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
