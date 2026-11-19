@@ -1,0 +1,71 @@
+import Link from "next/link";
+import type { ReactNode } from "react";
+import { ClosePopoverOnLink } from "./close-popover-on-link";
+import { CloseIcon, MenuIcon } from "./header-icons";
+import type { NavLink } from "./nav-links";
+
+const MENU_ID = "site-menu";
+
+type Props = {
+  links: NavLink[];
+  labels: { open: string; close: string; nav: string };
+  /** Language + currency switches, shown inside the menu on small screens. */
+  switches: ReactNode;
+};
+
+/** Mobile menu built on the native Popover API — opening/closing needs no JavaScript. */
+export function MobileMenu({ links, labels, switches }: Props) {
+  return (
+    <>
+      <button
+        type="button"
+        popoverTarget={MENU_ID}
+        aria-label={labels.open}
+        className="flex size-44 items-center justify-center text-ivory-text lg:hidden"
+      >
+        <MenuIcon />
+      </button>
+
+      <div
+        id={MENU_ID}
+        popover="auto"
+        className="m-0 h-dvh max-h-none w-[min(320px,86vw)] border-0 bg-plum-950 p-0 text-ivory-text inset-y-0 inset-s-0 inset-e-auto backdrop:bg-plum-950/60"
+      >
+        <div className="flex h-full flex-col gap-24 border-e border-gold-500/40 px-24 py-20">
+          <div className="flex justify-end">
+            <button
+              type="button"
+              popoverTarget={MENU_ID}
+              popoverTargetAction="hide"
+              aria-label={labels.close}
+              className="flex size-44 items-center justify-center"
+            >
+              <CloseIcon />
+            </button>
+          </div>
+
+          <ClosePopoverOnLink>
+            <nav aria-label={labels.nav}>
+              <ul className="flex flex-col">
+                {links.map((link) => (
+                  <li key={link.href} className="border-b border-gold-500/20">
+                    <Link
+                      href={link.href}
+                      className="flex min-h-48 items-center text-base font-medium hover:text-gold-300"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </ClosePopoverOnLink>
+
+          <div className="mt-auto flex items-center justify-between gap-12">
+            {switches}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}

@@ -1,21 +1,33 @@
 {
   "meta": {
-    "title": "VEERLA Homewear",
-    "description": "Soft pajamas and homewear with a touch of luxury. Choose your piece and send your order on WhatsApp."
+    "title": "Veerla Store",
+    "description": "Luxury velvet and satin homewear. Choose your piece and send your order on WhatsApp."
   },
   "brand": {
-    "name": "VEERLA",
-    "tagline": "HOMEWEAR"
+    "name": "Veerla Store",
+    "tagline": "HOMEWEAR",
+    "homeLabel": "Veerla Store — Home"
   },
-  "trustBar": {
+  "announcement": {
+    "label": "Store announcements",
     "delivery": "Home delivery or shipping",
-    "pickup": "Pickup from the market",
-    "whatsapp": "Order via WhatsApp"
+    "pickup": "Free pickup from the market",
+    "whatsapp": "Order easily via WhatsApp"
   },
   "nav": {
-    "label": "Main navigation",
+    "label": "Main menu",
+    "products": "Products",
+    "offers": "Offers",
+    "bestSellers": "Best sellers",
     "newArrivals": "New arrivals",
-    "howToOrder": "How to order"
+    "about": "About us",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "actions": {
+    "search": "Search",
+    "wishlist": "Wishlist",
+    "cart": "Bag"
   },
   "switches": {
     "currencyLabel": "Currency",
@@ -30,11 +42,12 @@
     "sypSuffix": "SYP"
   },
   "hero": {
-    "eyebrow": "Winter collection",
-    "title": "Home comfort, softly luxurious",
-    "subtitle": "Soft, warm sets made for your favorite moments at home.",
-    "cta": "Shop new arrivals",
-    "imageAlt": "Brown velvet set with gold embroidery"
+    "eyebrow": "Winter 2026",
+    "eyebrowLatin": "Winter Edit",
+    "title": "Softness made for your moments at home",
+    "subtitle": "Luxury velvet and satin homewear, designed to bring warmth and elegance to every detail of your day.",
+    "ctaPrimary": "Shop the collection",
+    "ctaSecondary": "Discover gifts"
   },
   "values": {
     "title": "Why VEERLA",

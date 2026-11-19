@@ -1,21 +1,33 @@
 {
   "meta": {
-    "title": "VEERLA Homewear",
-    "description": "بيجامات وملابس بيت ناعمة بلمسة فخامة. اختاري قطعتك وابعتي طلبك عالواتساب."
+    "title": "Veerla Store",
+    "description": "ملابس منزلية فاخرة من المخمل والساتان. اختاري قطعتك وابعتي طلبك عالواتساب."
   },
   "brand": {
-    "name": "VEERLA",
-    "tagline": "HOMEWEAR"
+    "name": "Veerla Store",
+    "tagline": "HOMEWEAR",
+    "homeLabel": "Veerla Store — الصفحة الرئيسية"
   },
-  "trustBar": {
+  "announcement": {
+    "label": "إعلانات المتجر",
     "delivery": "توصيل للبيت أو شحن",
-    "pickup": "استلام من السوق",
-    "whatsapp": "الطلب عبر واتساب"
+    "pickup": "استلام مجاني من السوق",
+    "whatsapp": "اطلبي بسهولة عبر واتساب"
   },
   "nav": {
-    "label": "التنقل الرئيسي",
+    "label": "القائمة الرئيسية",
+    "products": "المنتجات",
+    "offers": "العروض",
+    "bestSellers": "الأكثر مبيعاً",
     "newArrivals": "وصل حديثاً",
-    "howToOrder": "كيف تطلبين"
+    "about": "من نحن",
+    "openMenu": "فتح القائمة",
+    "closeMenu": "إغلاق القائمة"
+  },
+  "actions": {
+    "search": "بحث",
+    "wishlist": "المفضلة",
+    "cart": "السلة"
   },
   "switches": {
     "currencyLabel": "العملة",
@@ -30,11 +42,12 @@
     "sypSuffix": "ل.س"
   },
   "hero": {
-    "eyebrow": "مجموعة الشتاء",
-    "title": "راحة البيت، بلمسة فخامة",
-    "subtitle": "أطقم ناعمة ودافية مصممة لأحلى لحظاتك بالبيت.",
-    "cta": "تسوّقي الجديد",
-    "imageAlt": "طقم مخمل بني مع تطريز ذهبي"
+    "eyebrow": "مجموعة شتاء 2026",
+    "eyebrowLatin": "Winter Edit",
+    "title": "نعومةٌ تليق بلحظاتكِ في البيت",
+    "subtitle": "ملابس منزلية فاخرة من المخمل والساتان، مصممة لتمنحكِ الدفء والأناقة في كل تفاصيل يومكِ.",
+    "ctaPrimary": "تسوقي المجموعة",
+    "ctaSecondary": "اكتشفي الهدايا"
   },
   "values": {
     "title": "ليش VEERLA",

@@ -12,7 +12,7 @@ function Icon({ children }: { children: ReactNode }) {
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
-      className="size-8"
+      className="size-32"
     >
       {children}
     </svg>
@@ -23,7 +23,7 @@ export async function BrandValues() {
   const dict = await getDictionary();
 
   const values = [
-    { label: dict.values.soft, icon: <Feather className="size-8" /> },
+    { label: dict.values.soft, icon: <Feather className="size-32" /> },
     {
       label: dict.values.breathable,
       icon: (
@@ -60,11 +60,11 @@ export async function BrandValues() {
       <h2 id="values-title" className="sr-only">
         {dict.values.title}
       </h2>
-      <ul className="mx-auto grid max-w-6xl grid-cols-2 gap-y-8 px-4 py-10 md:grid-cols-4">
+      <ul className="mx-auto grid max-w-6xl grid-cols-2 gap-y-32 px-16 py-40 md:grid-cols-4">
         {values.map((value) => (
           <li
             key={value.label}
-            className="flex flex-col items-center gap-3 text-center text-sm text-ink"
+            className="flex flex-col items-center gap-12 text-center text-sm text-ink"
           >
             <span className="text-mauve">{value.icon}</span>
             {value.label}

@@ -1,0 +1,240 @@
+/* VEERLA motion — pure CSS, values from .local-docs/HOME_SPEC.md §4.
+   Rules: animate only transform / opacity / clip-path / background-position;
+   default state without JS = everything visible; reduced motion = final state. */
+
+/* §4.2 Living velvet */
+.velvet {
+  animation: velvetBreath 26s ease-in-out infinite alternate;
+  transform-origin: 60% 40%;
+  will-change: transform;
+}
+[data-offscreen] .velvet {
+  animation-play-state: paused;
+}
+@keyframes velvetBreath {
+  from { transform: scale(1.06); }
+  to { transform: scale(1.13) translate(-1.6%, 1.2%); }
+}
+
+/* §4.1 The feather writes the logo */
+.logo-stage {
+  position: relative;
+  width: min(540px, 80vw);
+  aspect-ratio: 967 / 625;
+}
+.logo-stage img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+/* Hold every layer on its first frame until the logo images have loaded
+   (set by the intro script; never applies without JS). */
+[data-intro="pending"] .logo-stage > * {
+  animation-play-state: paused;
+}
+.lg-feather {
+  transform-origin: 46% 38%;
+  animation: featherFall 1.9s cubic-bezier(0.33, 0, 0.2, 1) 0.2s both;
+}
+@keyframes featherFall {
+  0% { opacity: 0; transform: translate(20%, -90%) rotate(-30deg); }
+  22% { opacity: 1; transform: translate(-9%, -62%) rotate(14deg); }
+  48% { transform: translate(7%, -30%) rotate(-9deg); }
+  74% { transform: translate(-3%, -9%) rotate(4deg); }
+  100% { opacity: 1; transform: none; }
+}
+
+/* Physical inset on purpose: the logo is Latin, so it is written left → right even in RTL. */
+.lg-words {
+  animation: writeIn 1.5s cubic-bezier(0.65, 0, 0.35, 1) 1.8s both;
+}
+@keyframes writeIn {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+.lg-pen {
+  position: absolute;
+  left: 2%;
+  top: 64%;
+  width: 18px;
+  height: 18px;
+  margin: -9px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff6dd 0, #e2c08a 38%, rgba(226, 192, 138, 0) 70%);
+  box-shadow: 0 0 26px 10px rgba(255, 214, 150, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  animation: penMove 1.5s cubic-bezier(0.65, 0, 0.35, 1) 1.8s both;
+}
+@keyframes penMove {
+  0% { left: 2%; top: 64%; opacity: 0; }
+  10% { opacity: 1; }
+  35% { top: 72%; }
+  62% { top: 63%; }
+  88% { opacity: 1; }
+  100% { left: 97%; top: 68%; opacity: 0; }
+}
+
+.lg-sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  -webkit-mask: url(/assets/imgs/veerla/logo-gold.webp) center / 100% 100% no-repeat;
+  mask: url(/assets/imgs/veerla/logo-gold.webp) center / 100% 100% no-repeat;
+  background: linear-gradient(
+      105deg,
+      rgba(255, 255, 255, 0) 38%,
+      rgba(255, 249, 228, 0.95) 50%,
+      rgba(255, 255, 255, 0) 62%
+    )
+    no-repeat;
+  background-size: 300% 100%;
+  background-position: 120% 0;
+  animation: sheen 1.4s ease-out 3.35s both;
+}
+@keyframes sheen {
+  from { background-position: 120% 0; }
+  to { background-position: -20% 0; }
+}
+.logo-stage:hover .lg-sheen {
+  animation: sheenHover 1.2s ease-out both;
+}
+@keyframes sheenHover {
+  from { background-position: 120% 0; }
+  to { background-position: -20% 0; }
+}
+
+.rise { animation: rise 0.9s ease-out both; }
+.rise-d1 { animation-delay: 0.8s; }
+.rise-d2 { animation-delay: 1s; }
+.rise-d3 { animation-delay: 1.2s; }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Intro plays once per session: <html data-intro="seen"> skips it. */
+[data-intro="seen"] .lg-feather,
+[data-intro="seen"] .lg-words,
+[data-intro="seen"] .lg-sheen,
+[data-intro="seen"] .rise {
+  animation: none;
+}
+[data-intro="seen"] .lg-pen {
+  display: none;
+}
+/* Keep the hover sheen available after the intro. */
+[data-intro="seen"] .logo-stage:hover .lg-sheen {
+  animation: sheenHover 1.2s ease-out both;
+}
+
+/* §4.3 Gold sheen on buttons */
+.btn-gold {
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+.btn-gold::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 250, 236, 0.8) 50%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  transform: translateX(130%);
+}
+.btn-gold:hover {
+  box-shadow: 0 12px 32px rgba(201, 164, 108, 0.38);
+  transform: translateY(-1px);
+}
+.btn-gold:hover::after {
+  transform: translateX(-130%);
+  transition: transform 0.9s ease;
+}
+
+/* Header logo sheen (pages other than home) */
+.header-logo-sheen {
+  filter: brightness(1.9) saturate(0.55);
+  clip-path: inset(0 100% 0 -35%);
+  pointer-events: none;
+}
+.header-logo:hover .header-logo-sheen,
+.header-logo:focus-visible .header-logo-sheen {
+  clip-path: inset(0 -35% 0 100%);
+  transition: clip-path 0.9s ease;
+}
+
+/* §4.4 Silk edges */
+.wave-box {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 64px;
+  overflow: hidden;
+  pointer-events: none;
+}
+.wave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  animation: waveDrift 30s linear infinite;
+}
+.wave.slow {
+  animation-duration: 46s;
+  animation-direction: reverse;
+}
+@keyframes waveDrift {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+/* §4.4 Section reveal ("silk curtain"), scroll-driven, no JS */
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: silkReveal linear both;
+    animation-timeline: view();
+    animation-range: entry 5% cover 30%;
+  }
+  @keyframes silkReveal {
+    from { opacity: 0; clip-path: inset(0 0 24% 0); transform: translateY(42px); }
+    to { opacity: 1; clip-path: inset(0 0 0 0); transform: none; }
+  }
+}
+
+/* Mandatory: reduced motion shows the final state immediately. */
+@media (prefers-reduced-motion: reduce) {
+  .velvet,
+  .lg-feather,
+  .lg-words,
+  .lg-sheen,
+  .rise,
+  .wave,
+  .reveal,
+  .logo-stage:hover .lg-sheen,
+  [data-intro="seen"] .logo-stage:hover .lg-sheen {
+    animation: none !important;
+  }
+  .lg-pen {
+    display: none;
+  }
+  .btn-gold,
+  .btn-gold::after,
+  .header-logo-sheen {
+    transition: none !important;
+  }
+  .btn-gold:hover {
+    transform: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}

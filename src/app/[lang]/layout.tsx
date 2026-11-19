@@ -1,24 +1,11 @@
 import type { Metadata } from "next";
-import { Marcellus, Tajawal } from "next/font/google";
 import { InlineScript } from "@/components/inline-script";
+import { CURRENCY_STORAGE_KEY } from "@/features/currency/constants";
 import { localeDirection, locales } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
-import { CURRENCY_STORAGE_KEY } from "@/features/currency/constants";
+import { fontVariables } from "../fonts";
 import "../globals.css";
-
-const tajawal = Tajawal({
-  variable: "--font-tajawal",
-  subsets: ["arabic", "latin"],
-  weight: ["400", "500", "700"],
-  display: "swap",
-});
-
-const marcellus = Marcellus({
-  variable: "--font-marcellus",
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-});
+import "@/styles/motion.css";
 
 // Applies the saved display currency before first paint so cached pages
 // never flash the wrong price (see ARCHITECTURE.md §4).
@@ -47,7 +34,7 @@ export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {
       lang={locale}
       dir={localeDirection[locale]}
       data-currency="usd"
-      className={`${tajawal.variable} ${marcellus.variable} h-full antialiased`}
+      className={`${fontVariables} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>

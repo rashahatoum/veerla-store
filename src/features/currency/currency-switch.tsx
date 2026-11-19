@@ -57,7 +57,7 @@ export function CurrencySwitch({ labels }: Props) {
     <div
       role="group"
       aria-label={labels.group}
-      className="flex rounded-full border border-line p-0.5 text-xs"
+      className="flex rounded-full border border-ivory-text/30 p-2 text-sm"
     >
       {options.map((option) => {
         const active = current === option.value;
@@ -68,8 +68,10 @@ export function CurrencySwitch({ labels }: Props) {
             aria-pressed={active}
             aria-label={option.name}
             onClick={() => setCurrency(option.value)}
-            className={`min-w-9 rounded-full px-2.5 py-1 font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold ${
-              active ? "bg-plum text-ivory" : "text-ink-muted hover:text-ink"
+            className={`min-h-40 min-w-40 rounded-full px-10 font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-300 ${
+              active
+                ? "bg-gold-500 text-plum-900"
+                : "text-ivory-text/80 hover:text-ivory-text"
             }`}
           >
             {option.short}

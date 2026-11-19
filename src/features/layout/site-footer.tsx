@@ -6,8 +6,8 @@ export async function SiteFooter() {
 
   return (
     <footer className="mt-auto bg-plum text-ivory">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-5 px-4 py-12 text-center">
-        <div className="rounded-full bg-ivory px-6 py-3">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-20 px-16 py-48 text-center">
+        <div className="rounded-full bg-ivory px-24 py-12">
           <Logo name={dict.brand.name} tagline={dict.brand.tagline} />
         </div>
         <p className="max-w-md text-sm leading-relaxed text-champagne">
