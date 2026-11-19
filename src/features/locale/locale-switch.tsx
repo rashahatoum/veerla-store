@@ -22,7 +22,7 @@ export function LocaleSwitch({ target, label, groupLabel }: Props) {
       hrefLang={target}
       lang={target}
       aria-label={`${groupLabel}: ${label}`}
-      className="rounded-full px-2.5 py-1 text-xs font-medium text-ink-muted transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+      className="flex min-h-44 items-center px-8 text-sm font-medium text-ivory-text transition-colors hover:text-gold-300 focus-visible:outline-2 focus-visible:outline-gold-300"
     >
       {label}
     </Link>

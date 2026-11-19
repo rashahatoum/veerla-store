@@ -12,16 +12,16 @@ export async function NewArrivals() {
     <section
       id="new-arrivals"
       aria-labelledby="new-arrivals-title"
-      className="mx-auto w-full max-w-6xl scroll-mt-32 px-4 py-14"
+      className="mx-auto w-full max-w-6xl scroll-mt-128 px-16 py-56"
     >
-      <div className="mb-8 flex flex-col items-center gap-2 text-center">
+      <div className="mb-32 flex flex-col items-center gap-8 text-center">
         <h2 id="new-arrivals-title" className="font-display text-3xl">
           {dict.newArrivals.title}
         </h2>
         <p className="text-sm text-ink-muted">{dict.newArrivals.subtitle}</p>
       </div>
 
-      <ul className="grid grid-cols-2 gap-x-4 gap-y-8 lg:grid-cols-4">
+      <ul className="grid grid-cols-2 gap-x-16 gap-y-32 lg:grid-cols-4">
         {products.map((product) => (
           <li key={product.id}>
             <ProductCard product={product} />

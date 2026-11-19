@@ -34,3 +34,12 @@ A separate developer builds the Laravel backend. The frontend (storefront + dash
 | Languages | Arabic + English from the start (Arabic default, RTL; English LTR). |
 | Dashboard users | Single owner admin for now; marketer accounts possible later. |
 | Images | 3:4 portrait direction agreed in principle; detailed image spec pending owner confirmation. |
+
+## D-004 — Home page design (approved 2026-11-20)
+
+- Home page follows `HOME_SPEC.md` + design-reference + owner screenshot notes; fonts and palette replaced accordingly (Amiri / IBM Plex Sans Arabic / Cinzel / Cormorant; plum–gold–nude tokens).
+- Header nav: Products · Offers · Best sellers · New arrivals · About us; actions: language, currency, search, wishlist, bag. No customer-account icon (no customer accounts).
+- Design copy that conflicts with business decisions is replaced: no "free shipping over X SAR", no installments, prices in USD/SYP only.
+- "About us" is a section on the home page (`#about`), not a separate page.
+- A compact "How your order works" section stays before the footer (WhatsApp ≠ confirmed order).
+- Which home content the owner edits from the dashboard: to be agreed later.

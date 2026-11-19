@@ -1,66 +1,124 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Logo } from "@/components/brand/logo";
 import { CurrencySwitch } from "@/features/currency/currency-switch";
 import { LocaleSwitch } from "@/features/locale/locale-switch";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
+import { BagIcon, HeartIcon, SearchIcon } from "./header-icons";
+import { HeaderLogo } from "./header-logo";
+import { MobileMenu } from "./mobile-menu";
+import { getNavLinks } from "./nav-links";
 
-export async function SiteHeader() {
+type Props = {
+  /** The home hero writes the logo itself, so the header hides it there. */
+  showLogo?: boolean;
+};
+
+const iconLink =
+  "flex size-44 items-center justify-center text-ivory-text transition-colors hover:text-gold-300 focus-visible:outline-2 focus-visible:outline-gold-300";
+
+export async function SiteHeader({ showLogo = true }: Props) {
   const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
-  const otherLocale = locale === "ar" ? "en" : "ar";
-
-  const trustItems = [
-    dict.trustBar.delivery,
-    dict.trustBar.pickup,
-    dict.trustBar.whatsapp,
+  const links = getNavLinks(locale, dict);
+  const announcements = [
+    dict.announcement.delivery,
+    dict.announcement.pickup,
+    dict.announcement.whatsapp,
   ];
 
+  const switches = (
+    <>
+      <LocaleSwitch
+        target={locale === "ar" ? "en" : "ar"}
+        label={dict.switches.switchTo}
+        groupLabel={dict.switches.languageLabel}
+      />
+      <CurrencySwitch
+        labels={{
+          group: dict.switches.currencyLabel,
+          usd: dict.switches.usd,
+          syp: dict.switches.syp,
+          usdName: dict.switches.usdName,
+          sypName: dict.switches.sypName,
+        }}
+      />
+    </>
+  );
+
   return (
-    <header className="sticky top-0 z-30 border-b border-line bg-ivory/95 backdrop-blur">
-      <div className="bg-plum text-ivory">
-        <ul className="mx-auto flex max-w-6xl justify-center gap-x-6 overflow-x-auto px-4 py-2 text-[0.7rem] whitespace-nowrap sm:text-xs">
-          {trustItems.map((item, index) => (
-            <li key={item} className={index > 0 ? "hidden sm:block" : undefined}>
-              {item}
+    <header className="relative overflow-hidden border-b border-gold-500/45 bg-plum-900 text-ivory-text">
+      <Image
+        src="/assets/imgs/veerla/velvet.jpg"
+        alt=""
+        aria-hidden="true"
+        fill
+        sizes="100vw"
+        className="object-cover object-[center_35%]"
+      />
+      <div aria-hidden="true" className="absolute inset-0 bg-plum-950/55" />
+
+      {/* Announcement bar */}
+      <div className="relative bg-[rgba(20,4,15,0.55)] px-16 py-8 text-[13px] text-gold-ink">
+        <ul
+          aria-label={dict.announcement.label}
+          className="flex flex-wrap items-center justify-center gap-x-22 gap-y-4 text-center"
+        >
+          {announcements.map((text, index) => (
+            <li
+              key={text}
+              className={`items-center gap-22 ${index === 0 ? "flex" : "hidden sm:flex"}`}
+            >
+              {index > 0 && (
+                <span aria-hidden="true" className="size-4 rotate-45 bg-gold-500" />
+              )}
+              {text}
             </li>
           ))}
         </ul>
       </div>
 
-      <div className="mx-auto grid max-w-6xl grid-cols-[1fr_auto_1fr] items-center gap-3 px-4 py-3">
-        {/* Hidden on small phones: the hero CTA already leads to new arrivals. */}
-        <nav
-          aria-label={dict.nav.label}
-          className="hidden gap-5 text-sm whitespace-nowrap sm:flex"
-        >
-          <a href="#new-arrivals" className="hover:text-mauve">
-            {dict.nav.newArrivals}
-          </a>
-          <a href="#how-to-order" className="hover:text-mauve">
-            {dict.nav.howToOrder}
-          </a>
-        </nav>
+      {/* Main row */}
+      <div className="relative mx-auto flex min-h-76 max-w-1360 items-center justify-between gap-20 px-16 py-6 md:px-32">
+        <div className="flex items-center gap-32">
+          {showLogo && (
+            <HeaderLogo href={`/${locale}`} label={dict.brand.homeLabel} />
+          )}
+          <nav aria-label={dict.nav.label} className="hidden lg:block">
+            <ul className="flex gap-x-30 text-[15px] font-medium">
+              {links.map((link, index) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className={`block py-12 transition-colors hover:text-gold-300 ${
+                      index === 1 ? "text-gold-300" : "text-ivory-text"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
 
-        <Link
-          href={`/${locale}`}
-          className="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
-        >
-          <Logo name={dict.brand.name} tagline={dict.brand.tagline} />
-        </Link>
-
-        <div className="flex items-center justify-end gap-1.5">
-          <LocaleSwitch
-            target={otherLocale}
-            label={dict.switches.switchTo}
-            groupLabel={dict.switches.languageLabel}
-          />
-          <CurrencySwitch
+        <div className="flex items-center gap-4">
+          <div className="me-8 hidden items-center gap-8 lg:flex">{switches}</div>
+          <Link href={`/${locale}/search`} aria-label={dict.actions.search} className={iconLink}>
+            <SearchIcon />
+          </Link>
+          <Link href={`/${locale}/wishlist`} aria-label={dict.actions.wishlist} className={iconLink}>
+            <HeartIcon />
+          </Link>
+          <Link href={`/${locale}/cart`} aria-label={dict.actions.cart} className={iconLink}>
+            <BagIcon />
+          </Link>
+          <MobileMenu
+            links={links}
             labels={{
-              group: dict.switches.currencyLabel,
-              usd: dict.switches.usd,
-              syp: dict.switches.syp,
-              usdName: dict.switches.usdName,
-              sypName: dict.switches.sypName,
+              open: dict.nav.openMenu,
+              close: dict.nav.closeMenu,
+              nav: dict.nav.label,
             }}
+            switches={switches}
           />
         </div>
       </div>

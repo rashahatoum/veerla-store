@@ -27,7 +27,7 @@ export async function ProductCard({
         : null;
 
   return (
-    <article className="group flex flex-col gap-3">
+    <article className="group flex flex-col gap-12">
       {/* Image link duplicates the title link, so it is hidden from keyboard/AT. */}
       <Link
         href={`/${locale}/products/${product.slug}`}
@@ -44,13 +44,13 @@ export async function ProductCard({
           className="aspect-3/4 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
         />
         {badge && (
-          <span className="absolute inset-s-3 top-3 rounded-full bg-ivory/90 px-3 py-1 text-xs font-medium text-plum">
+          <span className="absolute inset-s-12 top-12 rounded-full bg-ivory/90 px-12 py-4 text-xs font-medium text-plum">
             {badge}
           </span>
         )}
       </Link>
 
-      <div className="flex flex-col gap-1.5 px-1">
+      <div className="flex flex-col gap-6 px-4">
         <h3 className="text-sm font-medium leading-snug">
           <Link
             href={`/${locale}/products/${product.slug}`}
@@ -60,13 +60,13 @@ export async function ProductCard({
           </Link>
         </h3>
         <Price price={product.price} className="text-sm text-ink-muted" />
-        <ul className="flex items-center gap-1.5" aria-label={format(dict.product.colorsCount, { count: product.colors.length })}>
+        <ul className="flex items-center gap-6" aria-label={format(dict.product.colorsCount, { count: product.colors.length })}>
           {product.colors.map(({ color }) => {
             const colorName = localize(color.name, locale);
             return (
               <li key={color.id}>
                 <span
-                  className="block size-3.5 rounded-full border border-line"
+                  className="block size-14 rounded-full border border-line"
                   style={{ backgroundColor: color.hex }}
                   title={colorName}
                 />

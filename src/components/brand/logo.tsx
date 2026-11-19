@@ -9,11 +9,11 @@ type Props = {
 export function Logo({ name, tagline }: Props) {
   return (
     <span dir="ltr" className="inline-flex flex-col items-center leading-none">
-      <span className="flex items-center gap-1 font-display text-2xl tracking-[0.12em] text-ink">
+      <span className="flex items-center gap-4 font-display text-2xl tracking-[0.12em] text-ink">
         {name}
-        <Feather className="size-4 text-gold" />
+        <Feather className="size-16 text-gold" />
       </span>
-      <span className="mt-1 text-[0.55rem] tracking-[0.45em] text-gold">
+      <span className="mt-4 text-[0.55rem] tracking-[0.45em] text-gold">
         {tagline}
       </span>
     </span>

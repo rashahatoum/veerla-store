@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Veerla — الهيدر</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&amp;family=Cinzel:wght@400;500;600&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&amp;family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<header dir="rtl" style="font-family: 'IBM Plex Sans Arabic', sans-serif; color: #F3E6DA; background: #2A0A20; width: 100%; position: relative; overflow: hidden; border-bottom: 1px solid rgba(201,164,108,0.45)">
+  <img src="/_blob/3a7e5be9049b37cb33767735b9e35e50" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 35%">
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(31,7,24,0.55)"></div>
+  <div style="position: relative; background: rgba(20,4,15,0.55); color: #EAD3AB; font-size: 13px; padding: 8px 24px; display: flex; justify-content: center; align-items: center; gap: 22px; flex-wrap: wrap; text-align: center">
+    <span>شحن مجاني للطلبات فوق 300 ر.س</span>
+    <span aria-hidden="true" style="width: 4px; height: 4px; background: #C9A46C; transform: rotate(45deg)"></span>
+    <span>تغليف هدايا فاخر مع كل طلب</span>
+    <span aria-hidden="true" style="width: 4px; height: 4px; background: #C9A46C; transform: rotate(45deg)"></span>
+    <span>ادفعي على 4 دفعات بدون فوائد</span>
+  </div>
+  <div style="position: relative; max-width: 1360px; margin: 0 auto; padding: 6px 32px; min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap">
+    <sc-if value="{{ showLogo }}" hint-placeholder-val="{{ true }}">
+      <a href="Main.dc.html" aria-label="Veerla Store — الصفحة الرئيسية" onMouseEnter="{{ enter }}" onMouseLeave="{{ leave }}" onFocus="{{ enter }}" onBlur="{{ leave }}" style="position: relative; display: block; width: 100px; height: 64px">
+        <img src="/_blob/201ecee33c2e20bf3fba0a02d36cad3f" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain">
+        <img src="/_blob/201ecee33c2e20bf3fba0a02d36cad3f" alt="" aria-hidden="true" style="{{ sheenStyle }}">
+      </a>
+    </sc-if>
+    <nav aria-label="القائمة الرئيسية" style="display: flex; flex-wrap: wrap; gap: 4px 30px; font-size: 15px; font-weight: 500">
+      <a href="Shop.dc.html" style="color: #F3E6DA; text-decoration: none; padding: 12px 0">وصل حديثاً</a>
+      <a href="Shop.dc.html" style="color: #F3E6DA; text-decoration: none; padding: 12px 0">البيجامات</a>
+      <a href="Shop.dc.html" style="color: #F3E6DA; text-decoration: none; padding: 12px 0">الروبات</a>
+      <a href="Shop.dc.html" style="color: #F3E6DA; text-decoration: none; padding: 12px 0">أطقم الهدايا</a>
+      <a href="Shop.dc.html" style="color: #F3E6DA; text-decoration: none; padding: 12px 0">الإكسسوارات</a>
+      <a href="Shop.dc.html" style="color: #E2C08A; text-decoration: none; padding: 12px 0">التخفيضات</a>
+    </nav>
+    <div style="display: flex; align-items: center; gap: 4px">
+      <a href="Shop.dc.html" aria-label="بحث" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #F3E6DA"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></a>
+      <a href="Account.dc.html" aria-label="حسابي" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #F3E6DA"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></a>
+      <a href="Account.dc.html" aria-label="المفضلة" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #F3E6DA"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 20s-7-4.5-9-9a4.5 4.5 0 0 1 9-2.5A4.5 4.5 0 0 1 21 11c-2 4.5-9 9-9 9z"/></svg></a>
+      <a href="Cart.dc.html" aria-label="السلة، {{ count }} منتجات" style="position: relative; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #F3E6DA"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <span style="position: absolute; top: 4px; left: 4px; min-width: 18px; height: 18px; border-radius: 9px; background: #C9A46C; color: #2A0A20; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center">{{ count }}</span></a>
+    </div>
+  </div>
+</header>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"cartCount":{"editor":"int","default":3,"min":0,"max":99},"hideLogo":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":112}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { hover: false }; }
+  renderVals() {
+    var self = this;
+    var base = 'position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; filter: brightness(1.9) saturate(0.55); pointer-events: none; ';
+    return {
+      count: this.props.cartCount ?? 3,
+      showLogo: !(this.props.hideLogo ?? false),
+      sheenStyle: this.state.hover ? base + 'clip-path: inset(0 -35% 0 100%); transition: clip-path 0.9s ease' : base + 'clip-path: inset(0 100% 0 -35%); transition: none',
+      enter: function () { self.setState({ hover: true }); },
+      leave: function () { self.setState({ hover: false }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

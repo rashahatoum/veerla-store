@@ -1,38 +1,80 @@
 @import "tailwindcss";
+/* motion.css is imported from the root layout, not here: the
+   @tailwindcss/turbopack loader cannot resolve local CSS @imports in dev. */
 
-/* VEERLA design tokens — the only place brand values live.
-   Palette is provisional (CLAUDE.md → Visual identity). */
+/* =====================================================================
+   VEERLA THEME — the single place to change brand colors and fonts.
+   Every value below becomes a CSS variable (e.g. var(--color-gold-500))
+   and a Tailwind utility (e.g. bg-gold-500, text-plum-900, font-heading).
+   ===================================================================== */
 @theme {
-  /* Brand palette */
-  --color-plum: #31051f;
-  --color-plum-soft: #4a1832;
-  --color-mauve: #89505b;
-  --color-rose: #d5a293;
-  --color-champagne: #e8ccba;
-  --color-ivory: #f8ebe2;
-  --color-cream: #fcf6f1;
-  --color-gold: #b8915a;
-  --color-gold-light: #d9bd8c;
+  /* Spacing unit = 1px, so p-16 = 16px, gap-24 = 24px, size-44 = 44px. */
+  --spacing: 1px;
 
-  /* Semantic aliases — prefer these in components */
-  --color-bg: var(--color-ivory);
-  --color-surface: var(--color-cream);
-  --color-ink: var(--color-plum);
-  --color-ink-muted: var(--color-mauve);
-  --color-line: color-mix(in srgb, var(--color-plum) 12%, transparent);
-  --color-accent: var(--color-gold);
+  /* ---------- Colors (HOME_SPEC.md §2) ---------- */
+  --color-plum-950: #1f0718; /* deepest plum, under the velvet */
+  --color-plum-900: #2a0a20; /* main text + dark buttons */
+  --color-plum-800: #3d1030; /* prices */
+  --color-plum-700: #5a1f45; /* links, icons */
+  --color-mauve-600: #6e4a58; /* secondary text */
+  --color-mauve-500: #5c3a48; /* paragraphs on light backgrounds */
+  --color-gold-500: #c9a46c; /* gold buttons, decorative lines (never text on light bg) */
+  --color-gold-300: #e2c08a; /* gold text on dark backgrounds */
+  --color-gold-700: #7e5e2e; /* gold text on light backgrounds (contrast) */
+  --color-gold-ink: #ead3ab; /* announcement text on velvet */
+  --color-nude-100: #f3e4d8; /* values strip, card backgrounds */
+  --color-border: #e8cdbb;
+  --color-border-strong: #d9bfaf;
+  --color-ivory: #fcf7f2; /* page background */
+  --color-card: #fffbf7;
+  --color-ivory-text: #f8eee6; /* text on velvet */
+  --color-blush-text: #e6d2d4; /* paragraphs on velvet */
+  --color-sale: #a23b4c;
 
-  /* Typography */
-  --font-sans: var(--font-tajawal), system-ui, sans-serif;
-  --font-display: var(--font-marcellus), var(--font-tajawal), serif;
-
-  --radius-card: 1.25rem;
+  /* ---------- Shape ---------- */
+  --radius-btn: 2px;
+  --radius-card: 4px;
 }
 
-body {
-  background: var(--color-bg);
-  color: var(--color-ink);
-  font-family: var(--font-sans);
+/* ---------- Fonts ----------
+   Font files are loaded in src/app/fonts.ts (next/font). Here you only choose
+   which loaded font plays which role. `inline` is required because these
+   values point at variables defined by next/font. */
+@theme inline {
+  --font-heading: var(--font-amiri), serif; /* Arabic headings, product names */
+  --font-sans: var(--font-plex), system-ui, sans-serif; /* body text (default) */
+  --font-label: var(--font-cinzel), serif; /* small spaced Latin labels */
+  --font-accent: var(--font-cormorant), serif; /* soft English italic phrases */
+}
+
+/* Legacy aliases for sections not rebuilt yet — delete once they are replaced. */
+@theme inline {
+  --color-plum: var(--color-plum-900);
+  --color-mauve: var(--color-mauve-600);
+  --color-gold: var(--color-gold-500);
+  --color-gold-light: var(--color-gold-300);
+  --color-champagne: var(--color-nude-100);
+  --color-cream: var(--color-card);
+  --color-surface: var(--color-card);
+  --color-ink: var(--color-plum-900);
+  --color-ink-muted: var(--color-mauve-600);
+  --color-line: var(--color-border);
+  --font-display: var(--font-heading);
+}
+
+@layer base {
+  body {
+    background: var(--color-ivory);
+    color: var(--color-plum-900);
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2 {
+    font-family: var(--font-heading);
+    letter-spacing: 0;
+    line-height: 1.5;
+  }
 }
 
 /* Display currency: both prices are server-rendered; the inactive one is hidden.
@@ -40,16 +82,6 @@ body {
 html[data-currency="usd"] [data-price="syp"],
 html[data-currency="syp"] [data-price="usd"] {
   display: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
 }
 
 html {

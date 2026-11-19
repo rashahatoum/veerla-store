@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Veerla — الفوتر</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&amp;family=Cinzel:wght@400;500;600&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&amp;family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<footer dir="rtl" style="font-family: 'IBM Plex Sans Arabic', sans-serif; color: #F3E6DA; background: #1F0718; width: 100%; position: relative; overflow: hidden; border-top: 1px solid rgba(201,164,108,0.35)">
+  <img src="/_blob/3a7e5be9049b37cb33767735b9e35e50" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 80%">
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(24,5,18,0.78)"></div>
+  <div style="max-width: 1360px; margin: 0 auto; padding: 72px 32px 28px; position: relative">
+    <div style="display: flex; flex-wrap: wrap; gap: 48px; justify-content: space-between">
+      <div style="flex: 1 1 300px; max-width: 380px; display: flex; flex-direction: column; gap: 18px">
+        <img src="/_blob/201ecee33c2e20bf3fba0a02d36cad3f" alt="Veerla Store" style="width: 150px; height: auto; align-self: flex-start">
+        <p style="margin: 0; font-size: 15px; line-height: 1.9; color: #CDB3B8">ملابس منزلية فاخرة صُممت لتجعل البيت أجمل مكان في يومكِ. نعومة، دفء، وأناقة في كل قطعة.</p>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap">
+          <a href="#" style="min-height: 44px; display: inline-flex; align-items: center; padding: 0 16px; border: 1px solid rgba(201,164,108,0.4); border-radius: 999px; color: #EAD3AB; text-decoration: none; font-size: 13px; font-family: 'Cinzel', serif; letter-spacing: 0.05em">Instagram</a>
+          <a href="#" style="min-height: 44px; display: inline-flex; align-items: center; padding: 0 16px; border: 1px solid rgba(201,164,108,0.4); border-radius: 999px; color: #EAD3AB; text-decoration: none; font-size: 13px; font-family: 'Cinzel', serif; letter-spacing: 0.05em">TikTok</a>
+          <a href="#" style="min-height: 44px; display: inline-flex; align-items: center; padding: 0 16px; border: 1px solid rgba(201,164,108,0.4); border-radius: 999px; color: #EAD3AB; text-decoration: none; font-size: 13px; font-family: 'Cinzel', serif; letter-spacing: 0.05em">Snapchat</a>
+        </div>
+      </div>
+      <sc-for list="{{ cols }}" as="col" hint-placeholder-count="3">
+        <nav aria-label="{{ col.title }}" style="flex: 0 1 180px; display: flex; flex-direction: column; gap: 6px">
+          <h3 style="margin: 0 0 10px; font-size: 15px; font-weight: 700; color: #E2C08A">{{ col.title }}</h3>
+          <sc-for list="{{ col.links }}" as="l" hint-placeholder-count="4">
+            <a href="{{ l.href }}" style="color: #E3D0CB; text-decoration: none; font-size: 15px; padding: 6px 0">{{ l.label }}</a>
+          </sc-for>
+        </nav>
+      </sc-for>
+    </div>
+    <div style="margin-top: 56px; padding-top: 24px; border-top: 1px solid rgba(201,164,108,0.2); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px">
+      <span style="font-size: 13px; color: #BFA3A8">© 2026 Veerla Store. جميع الحقوق محفوظة.</span>
+      <div aria-label="طرق الدفع المتاحة" style="display: flex; flex-wrap: wrap; gap: 8px">
+        <sc-for list="{{ pay }}" as="p" hint-placeholder-count="6">
+          <span style="font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 4px; background: #F8EEE6; color: #2A0A20">{{ p }}</span>
+        </sc-for>
+      </div>
+    </div>
+    <div aria-hidden="true" dir="ltr" style="font-family: 'Cinzel', serif; font-size: clamp(90px, 17vw, 260px); line-height: 0.8; letter-spacing: 0.08em; color: rgba(201,164,108,0.12); text-align: center; margin-top: 36px; margin-bottom: -28px; white-space: nowrap">VEERLA</div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":560}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      cols: [
+        { title: 'تسوقي', links: [{ label: 'وصل حديثاً', href: 'Shop.dc.html' }, { label: 'البيجامات', href: 'Shop.dc.html' }, { label: 'الروبات', href: 'Shop.dc.html' }, { label: 'أطقم الهدايا', href: 'Shop.dc.html' }] },
+        { title: 'المساعدة', links: [{ label: 'تتبع طلبكِ', href: 'Account.dc.html' }, { label: 'الشحن والتوصيل', href: '#' }, { label: 'الاستبدال والإرجاع', href: '#' }, { label: 'دليل المقاسات', href: '#' }] },
+        { title: 'عن فيرلا', links: [{ label: 'قصتنا', href: '#' }, { label: 'تواصلي معنا', href: '#' }, { label: 'الأسئلة الشائعة', href: '#' }, { label: 'سياسة الخصوصية', href: '#' }] }
+      ],
+      pay: ['مدى', 'VISA', 'Mastercard', 'Apple Pay', 'تابي', 'تمارا']
+    };
+  }
+}
+</script>
+</body>
+</html>
