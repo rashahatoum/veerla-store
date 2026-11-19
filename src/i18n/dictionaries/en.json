@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "title": "VEERLA Homewear",
+    "description": "Soft pajamas and homewear with a touch of luxury. Choose your piece and send your order on WhatsApp."
+  },
+  "brand": {
+    "name": "VEERLA",
+    "tagline": "HOMEWEAR"
+  },
+  "trustBar": {
+    "delivery": "Home delivery or shipping",
+    "pickup": "Pickup from the market",
+    "whatsapp": "Order via WhatsApp"
+  },
+  "nav": {
+    "label": "Main navigation",
+    "newArrivals": "New arrivals",
+    "howToOrder": "How to order"
+  },
+  "switches": {
+    "currencyLabel": "Currency",
+    "usd": "$",
+    "syp": "SYP",
+    "usdName": "US dollar",
+    "sypName": "Syrian pound",
+    "languageLabel": "Language",
+    "switchTo": "العربية"
+  },
+  "money": {
+    "sypSuffix": "SYP"
+  },
+  "hero": {
+    "eyebrow": "Winter collection",
+    "title": "Home comfort, softly luxurious",
+    "subtitle": "Soft, warm sets made for your favorite moments at home.",
+    "cta": "Shop new arrivals",
+    "imageAlt": "Brown velvet set with gold embroidery"
+  },
+  "values": {
+    "title": "Why VEERLA",
+    "soft": "Extra soft",
+    "breathable": "Breathable fabric",
+    "quality": "Lasting quality",
+    "comfort": "Home comfort"
+  },
+  "newArrivals": {
+    "title": "New arrivals",
+    "subtitle": "Fresh pieces we picked for you"
+  },
+  "product": {
+    "lowStock": "Limited stock",
+    "outOfStock": "Sold out",
+    "colorsCount": "{count} colors",
+    "colorLabel": "Color: {name}"
+  },
+  "howToOrder": {
+    "title": "How your order works",
+    "step1Title": "Choose",
+    "step1Text": "Pick your piece, color and size, and add it to your bag.",
+    "step2Title": "Send your order",
+    "step2Text": "Fill in your details, delivery and payment method — your order reaches us on WhatsApp.",
+    "step3Title": "We confirm & deliver",
+    "step3Text": "We contact you to confirm, then deliver or you pick it up from the market."
+  },
+  "footer": {
+    "about": "VEERLA is inspired by the Dutch word veer — feather. Homewear as soft as a feather.",
+    "payment": "Payment: Sham Cash or cash on delivery",
+    "rights": "All rights reserved"
+  }
+}

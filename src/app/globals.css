@@ -1,26 +1,57 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* VEERLA design tokens — the only place brand values live.
+   Palette is provisional (CLAUDE.md → Visual identity). */
+@theme {
+  /* Brand palette */
+  --color-plum: #31051f;
+  --color-plum-soft: #4a1832;
+  --color-mauve: #89505b;
+  --color-rose: #d5a293;
+  --color-champagne: #e8ccba;
+  --color-ivory: #f8ebe2;
+  --color-cream: #fcf6f1;
+  --color-gold: #b8915a;
+  --color-gold-light: #d9bd8c;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Semantic aliases — prefer these in components */
+  --color-bg: var(--color-ivory);
+  --color-surface: var(--color-cream);
+  --color-ink: var(--color-plum);
+  --color-ink-muted: var(--color-mauve);
+  --color-line: color-mix(in srgb, var(--color-plum) 12%, transparent);
+  --color-accent: var(--color-gold);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Typography */
+  --font-sans: var(--font-tajawal), system-ui, sans-serif;
+  --font-display: var(--font-marcellus), var(--font-tajawal), serif;
+
+  --radius-card: 1.25rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+/* Display currency: both prices are server-rendered; the inactive one is hidden.
+   <html data-currency> is set by the inline script in the root layout. */
+html[data-currency="usd"] [data-price="syp"],
+html[data-currency="syp"] [data-price="usd"] {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
 }
