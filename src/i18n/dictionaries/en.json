@@ -114,8 +114,27 @@
     "step3Text": "We contact you to confirm, then deliver or you pick it up from the market."
   },
   "footer": {
-    "about": "VEERLA is inspired by the Dutch word veer — feather. Homewear as soft as a feather.",
-    "payment": "Payment: Sham Cash or cash on delivery",
-    "rights": "All rights reserved"
+    "about": "VEERLA is inspired by the Dutch word veer — feather. Clothing that reflects your softness, light as a feather.",
+    "shop": "Shop",
+    "help": "Help",
+    "contact": "Contact us",
+    "followUs": "Follow us",
+    "instagram": "VEERLA on Instagram",
+    "facebook": "VEERLA on Facebook",
+    "whatsapp": "Message us on WhatsApp",
+    "returns": "Returns within {hours} hours of receiving your order",
+    "paymentLabel": "Payment:",
+    "paymentMethods": {
+      "sham_cash": "Sham Cash",
+      "cash_on_delivery": "Cash on delivery"
+    },
+    "fulfillmentLabel": "Delivery:",
+    "fulfillmentMethods": {
+      "pickup": "Market pickup",
+      "home_delivery": "Home delivery",
+      "shipping": "Shipping"
+    },
+    "rights": "All rights reserved",
+    "credit": "by Eng. Rasha"
   }
 }

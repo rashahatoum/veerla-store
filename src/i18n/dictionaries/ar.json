@@ -114,8 +114,27 @@
     "step3Text": "منتواصل معك لنأكّد الطلب، وبعدها منوصّله أو بتستلميه من السوق."
   },
   "footer": {
-    "about": "VEERLA مستوحاة من كلمة veer الهولندية، يعني ريشة. ملابس بيت ناعمة متل الريشة.",
-    "payment": "طرق الدفع: شام كاش أو كاش عند الاستلام",
-    "rights": "جميع الحقوق محفوظة"
+    "about": "VEERLA مستوحاة من كلمة veer الهولندية، يعني ريشة. ملابس تعكس نعومتك متل الريشة.",
+    "shop": "تسوقي",
+    "help": "مساعدة",
+    "contact": "تواصلي معنا",
+    "followUs": "تابعينا",
+    "instagram": "VEERLA على إنستغرام",
+    "facebook": "VEERLA على فيسبوك",
+    "whatsapp": "راسلينا على واتساب",
+    "returns": "الإرجاع خلال {hours} ساعة من الاستلام",
+    "paymentLabel": "الدفع:",
+    "paymentMethods": {
+      "sham_cash": "شام كاش",
+      "cash_on_delivery": "كاش عند الاستلام"
+    },
+    "fulfillmentLabel": "الاستلام:",
+    "fulfillmentMethods": {
+      "pickup": "من السوق",
+      "home_delivery": "توصيل للبيت",
+      "shipping": "شحن"
+    },
+    "rights": "جميع الحقوق محفوظة",
+    "credit": "by Eng. Rasha"
   }
 }
