@@ -66,6 +66,27 @@
     "title": "Best sellers",
     "subtitle": "The pieces our customers love most"
   },
+  "reviews": {
+    "title": "What our customers say",
+    "subtitle": "Real words from customers who tried VEERLA",
+    "rating": "Rated {rating} out of 5"
+  },
+  "products": {
+    "title": "All products",
+    "offersTitle": "Offers",
+    "count": "{count} pieces",
+    "filterLabel": "Filter products",
+    "all": "All",
+    "offersOnly": "Offers only",
+    "sortLabel": "Sort",
+    "sort": {
+      "newest": "Newest",
+      "best_selling": "Best selling",
+      "price_asc": "Price: low to high",
+      "price_desc": "Price: high to low"
+    },
+    "empty": "No products here right now — check back soon."
+  },
   "carousel": {
     "previous": "Previous",
     "next": "Next"
@@ -84,6 +105,7 @@
   },
   "howToOrder": {
     "title": "How your order works",
+    "subtitle": "Three simple steps — your order is confirmed only once we contact you",
     "step1Title": "Choose",
     "step1Text": "Pick your piece, color and size, and add it to your bag.",
     "step2Title": "Send your order",
