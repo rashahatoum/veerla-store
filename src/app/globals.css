@@ -63,21 +63,6 @@
   --font-heading-face: var(--font-cormorant), serif;
 }
 
-/* Legacy aliases for sections not rebuilt yet — delete once they are replaced. */
-@theme inline {
-  --color-plum: var(--color-plum-900);
-  --color-mauve: var(--color-mauve-600);
-  --color-gold: var(--color-gold-500);
-  --color-gold-light: var(--color-gold-300);
-  --color-champagne: var(--color-nude-100);
-  --color-cream: var(--color-card);
-  --color-surface: var(--color-card);
-  --color-ink: var(--color-plum-900);
-  --color-ink-muted: var(--color-mauve-600);
-  --color-line: var(--color-border);
-  --font-display: var(--font-heading);
-}
-
 @layer base {
   body {
     background: var(--color-ivory);

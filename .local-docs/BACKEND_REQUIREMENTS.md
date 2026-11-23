@@ -223,7 +223,7 @@ Saving the home content (hero, section picks, about text) sends `{ "tags": ["hom
 | GET | `/search/suggest?q=` | Autocomplete: up to 5 products + 3 categories |
 | POST | `/cart/validate` | Body: `[{variant_id, quantity}]` → current prices, availability, line totals, problems per line |
 | POST | `/checkout-intents` | Creates a pending intent; returns `reference` + ready-to-send WhatsApp message text + WhatsApp number |
-| GET | `/settings/public` | Store WhatsApp number, pickup location, fulfillment methods, currency |
+| GET | `/settings/public` | `whatsapp_number` (E.164 without "+"), `social {instagram, facebook, tiktok}` (nullable URLs), enabled `payment_methods[]`, enabled `fulfillment_methods[]`, `returns_window_hours` (null = no returns), pickup location, currency. Shape: `src/types/settings.ts`. Revalidation tag: `settings` |
 | GET | `/products/{slug}/reviews?page=` | Approved reviews of a product |
 | GET | `/reviews/invite/{token}` · POST `/reviews` | Review form data for a valid invite token; submit a review (status `pending`) |
 | GET | `/storefront/home` | Home content in one call: `hero.background {url,width,height,alt}`, `offers`, `best_sellers`, `new_arrivals` (each `{enabled, products: ProductSummary[]}` already resolved and ordered), `about {enabled,title,lead,body[],closing}`. Shape: `src/types/content.ts` |
@@ -245,7 +245,7 @@ Saving the home content (hero, section picks, about text) sends `{ "tags": ["hom
 | Reports | `GET /admin/reports/profit?from&to`, `GET /admin/reports/inventory`, `GET /admin/reports/sales?from&to&group_by=` |
 | Reviews | `GET /admin/reviews?status=pending`, `POST /admin/reviews/{id}/approve`, `POST .../reject`, `POST /admin/orders/{id}/review-invite` (creates the signed link to send on WhatsApp) |
 | Home content | `GET/PUT /admin/storefront/home` (about text, section switches, ordered product ids per section), `POST /admin/storefront/home/hero-background` and `POST /admin/storefront/home/about-image` (multipart image + `alt{ar,en}`) |
-| Settings | `GET/PUT /admin/settings` (WhatsApp number, pickup address, low-stock threshold, enabled payment methods, delivery default fees, SYP rounding step) |
+| Settings | `GET/PUT /admin/settings` (WhatsApp number, social links (Instagram, Facebook, TikTok), returns window in hours, pickup address, low-stock threshold, enabled payment methods, delivery default fees, SYP rounding step) |
 | Exchange rate | `GET /admin/exchange-rates` (history), `POST /admin/exchange-rates` (set new USD→SYP rate) |
 
 ## 11. Test fixtures the backend should cover
@@ -258,7 +258,7 @@ Online payment gateway, customer accounts/login, marketer login, multi-warehouse
 
 ## 13. Open questions (owner)
 
-1. **Returns/refund policy** — allowed? Within how many days?
+1. ~~Returns/refund policy~~ → answered 2026-11-23: returns accepted **within 48 hours of the customer receiving the order** (setting `returns_window_hours`, default 48). Item conditions (unworn, tags, hygiene items such as underwear) still to confirm.
 2. **Hosting / domains** — e.g. `veerla.com` (Next.js) + `api.veerla.com` (Laravel)?
 3. **Required customer fields** at checkout (name, phone, city, address?).
 
@@ -268,6 +268,7 @@ Online payment gateway, customer accounts/login, marketer login, multi-warehouse
 
 | Date | Change |
 |---|---|
+| 2026-11-23 | Returns: 48 hours from receipt (`returns_window_hours`). `GET /settings/public` now specified (WhatsApp number, social links, enabled payment/fulfillment methods, returns window) with the `settings` revalidation tag; admin settings gain social links + returns window. |
 | 2026-11-23 | About section gains an owner-managed `image` (4:5, 1200×1500) with `alt{ar,en}`; upload endpoint `POST /admin/storefront/home/about-image`. |
 | 2026-11-23 | `GET /products` gains `tag=offers`. `GET /storefront/home` gains `reviews {enabled, items[]}` (shape: `Review` in `src/types/content.ts`). |
 | 2026-11-23 | Added **customer reviews**: per product, only for confirmed orders via a signed invite link, owner approval before publishing, rating aggregates on products, owner-picked reviews on the home page. Public `ProductSummary` now includes `compare_at_price` (null without an active offer). |

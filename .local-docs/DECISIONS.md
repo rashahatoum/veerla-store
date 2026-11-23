@@ -44,6 +44,12 @@ A separate developer builds the Laravel backend. The frontend (storefront + dash
 - A compact "How your order works" section stays before the footer (WhatsApp ≠ confirmed order).
 - Which home content the owner edits from the dashboard: to be agreed later. → Agreed in D-005.
 
+## D-006 — Footer and store contact (approved 2026-11-23)
+
+- **Returns:** accepted within **48 hours of receiving the order** (owner). Conditions per item type still to confirm.
+- **Contact & social** come from public settings (dashboard): WhatsApp number, Instagram, Facebook (TikTok slot available). No working hours shown.
+- **Footer:** velvet background, gold logo + short brand story + social buttons; "Shop" (products, offers, best sellers, new arrivals) and "Help" (how your order works, about, reviews) columns; WhatsApp contact + returns window; the enabled payment (start) and fulfillment (end) methods as plain info lines with icons on one row (not chip/button-like); no language or currency switches in the footer (they live in the header); centered copyright with the credit "by Eng. Rasha". No giant wordmark. No separate delivery page (the how-to-order section covers it).
+
 ## D-005 — Home revision: fonts, sections, owner-managed content (approved 2026-11-23)
 
 - **Fonts:** Arabic headings Aref Ruqaa (hand-written Ruqaa); body/UI Cairo (both languages); English headings Cormorant Garamond; Cinzel stays for small Latin labels. Replaces Amiri / IBM Plex Sans Arabic.

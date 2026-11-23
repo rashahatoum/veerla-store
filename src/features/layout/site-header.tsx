@@ -1,13 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { IconLink } from "@/components/ui/icon-button";
-import { CurrencySwitch } from "@/features/currency/currency-switch";
-import { LocaleSwitch } from "@/features/locale/locale-switch";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
 import { BagIcon, HeartIcon, SearchIcon } from "./header-icons";
 import { HeaderLogo } from "./header-logo";
 import { MobileMenu } from "./mobile-menu";
 import { getNavLinks } from "./nav-links";
+import { SiteSwitches } from "./site-switches";
 
 type Props = {
   /** The home hero writes the logo itself, so the header hides it there. */
@@ -23,24 +22,7 @@ export async function SiteHeader({ showLogo = true }: Props) {
     dict.announcement.whatsapp,
   ];
 
-  const switches = (
-    <>
-      <LocaleSwitch
-        target={locale === "ar" ? "en" : "ar"}
-        label={dict.switches.switchTo}
-        groupLabel={dict.switches.languageLabel}
-      />
-      <CurrencySwitch
-        labels={{
-          group: dict.switches.currencyLabel,
-          usd: dict.switches.usd,
-          syp: dict.switches.syp,
-          usdName: dict.switches.usdName,
-          sypName: dict.switches.sypName,
-        }}
-      />
-    </>
-  );
+  const switches = <SiteSwitches />;
 
   return (
     <header className="relative overflow-hidden border-b border-gold-500/45 bg-plum-900 text-ivory-text">

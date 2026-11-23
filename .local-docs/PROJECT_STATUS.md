@@ -18,10 +18,12 @@ Last updated: 2026-11-23
 - Owner-managed content: `HomeContent` (`src/types/content.ts`) via `getHomeContent()` (tag `home-content`), mock in `src/mocks/home-content.ts`.
 - Products page `/[lang]/products` (Partial Prerender: static shell, listing streams in Suspense): all products or `?tag=offers`, sort chips (`newest`, `best_selling`, `price_asc`, `price_desc`) as plain links, empty state, skeleton.
 
+- Footer (D-006): `SiteFooter` reads `getPublicSettings()` (`src/types/settings.ts`, tag `settings`): social buttons, WhatsApp, returns window, enabled payment/fulfillment info lines, centered copyright + credit; `SiteSwitches` shared by header and mobile menu. Legacy theme aliases and the old text `Logo` removed.
+- Mobile header: search / wishlist / bag at the start, logo centered (store pages), menu at the end; the menu sheet opens from the end side. Phones get a CSS announcement ticker.
+
 ## Next steps
-1. Owner review of step 3.
-2. New footer (replace the Phase 1 footer), then delete legacy theme aliases and `components/brand/logo.tsx`.
-3. Product detail page (gallery per color, sizes, reviews), cart, checkout → WhatsApp (Phases 3–5).
+1. Owner review of the footer.
+2. Product detail page (gallery per color, sizes, reviews), cart, checkout → WhatsApp (Phases 3–5).
 4. Agree the image spec; open questions in `BACKEND_REQUIREMENTS.md` §13.
 
 ## Known issues / notes
