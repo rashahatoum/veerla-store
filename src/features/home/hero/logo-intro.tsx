@@ -1,7 +1,9 @@
 import Image from "next/image";
+import { LogoReplay } from "./logo-replay";
 
 type Props = {
-  label: string;
+  /** Accessible name of the replay button, e.g. "Veerla Store — replay the logo animation". */
+  replayLabel: string;
 };
 
 // The layers are already-compressed 967×625 WebP files (~60KB), so they skip
@@ -17,14 +19,17 @@ const layer = {
  * "The feather writes the logo" (HOME_SPEC.md §4.1). Four stacked layers,
  * animated purely in CSS (styles/motion.css), started by the intro script
  * once both images have loaded. Without JS the final logo is shown as-is.
+ * Clicking the logo replays the intro.
  */
-export function LogoIntro({ label }: Props) {
+export function LogoIntro({ replayLabel }: Props) {
   return (
-    <div className="logo-stage" role="img" aria-label={label}>
-      <Image {...layer} alt="" src="/assets/imgs/veerla/logo-words.webp" className="lg-words" />
-      <Image {...layer} alt="" src="/assets/imgs/veerla/logo-feather.webp" className="lg-feather" />
-      <span className="lg-pen" aria-hidden="true" />
-      <span className="lg-sheen" aria-hidden="true" />
-    </div>
+    <LogoReplay label={replayLabel}>
+      <span className="logo-stage block" aria-hidden="true">
+        <Image {...layer} alt="" src="/assets/imgs/veerla/logo-words.webp" className="lg-words" />
+        <Image {...layer} alt="" src="/assets/imgs/veerla/logo-feather.webp" className="lg-feather" />
+        <span className="lg-pen" />
+        <span className="lg-sheen" />
+      </span>
+    </LogoReplay>
   );
 }

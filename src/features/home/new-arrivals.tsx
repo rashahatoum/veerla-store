@@ -1,27 +1,31 @@
 import { ProductCard } from "@/components/commerce/product-card";
-import { getDictionary } from "@/i18n/get-dictionary";
-import { listProducts } from "@/lib/repositories/catalog";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { getDictionary, getLocale } from "@/i18n/get-dictionary";
+import type { ProductSummary } from "@/types/catalog";
 
-export async function NewArrivals() {
-  const [dict, products] = await Promise.all([
-    getDictionary(),
-    listProducts({ sort: "newest", limit: 8 }),
-  ]);
+type Props = {
+  /** Owner-picked, in order (HomeContent.new_arrivals). */
+  products: ProductSummary[];
+};
+
+export async function NewArrivals({ products }: Props) {
+  const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
 
   return (
     <section
       id="new-arrivals"
       aria-labelledby="new-arrivals-title"
-      className="mx-auto w-full max-w-6xl scroll-mt-128 px-16 py-56"
+      className="mx-auto w-full max-w-1360 scroll-mt-128 px-16 py-64 md:px-32"
     >
-      <div className="mb-32 flex flex-col items-center gap-8 text-center">
-        <h2 id="new-arrivals-title" className="font-display text-3xl">
-          {dict.newArrivals.title}
-        </h2>
-        <p className="text-sm text-ink-muted">{dict.newArrivals.subtitle}</p>
-      </div>
+      <SectionHeading
+        id="new-arrivals-title"
+        eyebrow="NEW IN"
+        title={dict.newArrivals.title}
+        subtitle={dict.newArrivals.subtitle}
+        action={{ href: `/${locale}/products?sort=newest`, label: dict.actions.viewAll }}
+      />
 
-      <ul className="grid grid-cols-2 gap-x-16 gap-y-32 lg:grid-cols-4">
+      <ul className="grid grid-cols-2 gap-x-12 gap-y-20 md:gap-x-24 md:gap-y-32 lg:grid-cols-4">
         {products.map((product) => (
           <li key={product.id}>
             <ProductCard product={product} />
