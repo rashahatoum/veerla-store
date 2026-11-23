@@ -1,25 +1,26 @@
 import {
-  Amiri,
+  Aref_Ruqaa,
+  Cairo,
   Cinzel,
   Cormorant_Garamond,
-  IBM_Plex_Sans_Arabic,
 } from "next/font/google";
 
-// Font files (HOME_SPEC.md §1). To change a role, edit `@theme inline` in
-// globals.css; to swap a typeface, change it here and keep the variable name.
+// Font files. To change which font plays a role, edit globals.css
+// (`--font-heading-face` and the `@theme inline` block); to swap a typeface,
+// change it here and keep the variable name.
 
-export const amiri = Amiri({
-  variable: "--font-amiri",
+/** Arabic headings: hand-written Ruqaa calligraphy (owner choice, D-005). */
+export const arefRuqaa = Aref_Ruqaa({
+  variable: "--font-ruqaa",
   subsets: ["arabic", "latin"],
   weight: ["400", "700"],
   display: "swap",
 });
 
-// Weight 700 dropped on purpose (unused in the design) to keep font payload down.
-export const plex = IBM_Plex_Sans_Arabic({
-  variable: "--font-plex",
+/** Body text and UI, Arabic + Latin. Variable font: every weight in one file. */
+export const cairo = Cairo({
+  variable: "--font-cairo",
   subsets: ["arabic", "latin"],
-  weight: ["300", "400", "500", "600"],
   display: "swap",
 });
 
@@ -30,14 +31,15 @@ export const cinzel = Cinzel({
   display: "swap",
 });
 
+/** English headings + soft italic phrases. */
 export const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600"],
   style: ["normal", "italic"],
   display: "swap",
 });
 
-export const fontVariables = [amiri, plex, cinzel, cormorant]
+export const fontVariables = [arefRuqaa, cairo, cinzel, cormorant]
   .map((font) => font.variable)
   .join(" ");

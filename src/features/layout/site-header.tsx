@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { IconLink } from "@/components/ui/icon-button";
 import { CurrencySwitch } from "@/features/currency/currency-switch";
 import { LocaleSwitch } from "@/features/locale/locale-switch";
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
@@ -12,9 +13,6 @@ type Props = {
   /** The home hero writes the logo itself, so the header hides it there. */
   showLogo?: boolean;
 };
-
-const iconLink =
-  "flex size-44 items-center justify-center text-ivory-text transition-colors hover:text-gold-300 focus-visible:outline-2 focus-visible:outline-gold-300";
 
 export async function SiteHeader({ showLogo = true }: Props) {
   const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
@@ -100,17 +98,17 @@ export async function SiteHeader({ showLogo = true }: Props) {
           </nav>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-8">
           <div className="me-8 hidden items-center gap-8 lg:flex">{switches}</div>
-          <Link href={`/${locale}/search`} aria-label={dict.actions.search} className={iconLink}>
+          <IconLink href={`/${locale}/search`} aria-label={dict.actions.search}>
             <SearchIcon />
-          </Link>
-          <Link href={`/${locale}/wishlist`} aria-label={dict.actions.wishlist} className={iconLink}>
+          </IconLink>
+          <IconLink href={`/${locale}/wishlist`} aria-label={dict.actions.wishlist}>
             <HeartIcon />
-          </Link>
-          <Link href={`/${locale}/cart`} aria-label={dict.actions.cart} className={iconLink}>
+          </IconLink>
+          <IconLink href={`/${locale}/cart`} aria-label={dict.actions.cart}>
             <BagIcon />
-          </Link>
+          </IconLink>
           <MobileMenu
             links={links}
             labels={{

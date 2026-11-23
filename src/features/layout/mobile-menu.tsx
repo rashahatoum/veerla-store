@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { iconButtonClass } from "@/components/ui/icon-button";
 import { ClosePopoverOnLink } from "./close-popover-on-link";
 import { CloseIcon, MenuIcon } from "./header-icons";
 import type { NavLink } from "./nav-links";
@@ -21,7 +22,7 @@ export function MobileMenu({ links, labels, switches }: Props) {
         type="button"
         popoverTarget={MENU_ID}
         aria-label={labels.open}
-        className="flex size-44 items-center justify-center text-ivory-text lg:hidden"
+        className={iconButtonClass("glass", "lg:hidden")}
       >
         <MenuIcon />
       </button>
@@ -38,7 +39,7 @@ export function MobileMenu({ links, labels, switches }: Props) {
               popoverTarget={MENU_ID}
               popoverTargetAction="hide"
               aria-label={labels.close}
-              className="flex size-44 items-center justify-center"
+              className={iconButtonClass("glass")}
             >
               <CloseIcon />
             </button>
