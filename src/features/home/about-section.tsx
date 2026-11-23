@@ -25,14 +25,15 @@ export async function AboutSection({ content }: { content: AboutContent }) {
       <div aria-hidden="true" className="absolute inset-0 bg-linear-to-b from-plum-950/80 via-plum-900/75 to-plum-950/85" />
 
       <div className="reveal relative mx-auto grid max-w-1360 items-center gap-40 px-16 py-72 md:px-32 md:py-96 lg:grid-cols-[5fr_7fr] lg:gap-64">
-        <div className="overflow-hidden rounded-card shadow-lift ring-1 ring-gold-500/30">
+        {/* Owner-managed image (4:5), same ratio on every screen so nothing is cropped. */}
+        <div className="mx-auto w-full max-w-480 overflow-hidden rounded-card shadow-lift ring-1 ring-gold-500/30 lg:max-w-none">
           <Image
-            src="/assets/imgs/veerla/feather-gold.jpg"
-            alt=""
-            width={780}
-            height={380}
-            sizes="(min-width: 1024px) 40vw, 100vw"
-            className="aspect-780/380 w-full object-cover lg:aspect-4/5"
+            src={content.image.url}
+            alt={t(content.image.alt)}
+            width={content.image.width}
+            height={content.image.height}
+            sizes="(min-width: 1024px) 40vw, (min-width: 528px) 480px, 100vw"
+            className="aspect-4/5 w-full object-cover"
           />
         </div>
 

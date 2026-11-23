@@ -23,6 +23,8 @@ export type CuratedProductsSection = {
 
 export type AboutSection = {
   enabled: boolean;
+  /** Portrait 4:5, recommended 1200×1500. `alt` describes it for screen readers / SEO. */
+  image: MediaImage;
   title: Localized;
   lead: Localized;
   /** Paragraphs, in order. */
