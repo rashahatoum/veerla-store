@@ -56,17 +56,19 @@ export async function BrandValues() {
   ];
 
   return (
-    <section aria-labelledby="values-title" className="border-y border-line bg-cream">
+    <section aria-labelledby="values-title" className="bg-nude-100">
       <h2 id="values-title" className="sr-only">
         {dict.values.title}
       </h2>
-      <ul className="mx-auto grid max-w-6xl grid-cols-2 gap-y-32 px-16 py-40 md:grid-cols-4">
+      <ul className="mx-auto grid max-w-1360 grid-cols-2 gap-y-28 px-16 pt-24 pb-48 md:grid-cols-4 md:px-32">
         {values.map((value) => (
           <li
             key={value.label}
-            className="flex flex-col items-center gap-12 text-center text-sm text-ink"
+            className="flex flex-col items-center gap-12 text-center text-sm font-semibold text-plum-900"
           >
-            <span className="text-mauve">{value.icon}</span>
+            <span className="flex size-64 items-center justify-center rounded-full bg-card text-gold-700 shadow-soft ring-1 ring-gold-500/30">
+              {value.icon}
+            </span>
             {value.label}
           </li>
         ))}

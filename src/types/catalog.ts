@@ -60,7 +60,10 @@ export type ProductSummary = {
   slug: string;
   name: Localized;
   category: CategoryRef;
+  /** Price charged now (the offer price while an offer is active). */
   price: Price;
+  /** Regular price while an offer is active, otherwise null (BACKEND_REQUIREMENTS §4 Offers). */
+  compare_at_price: Price | null;
   colors: ProductColorOption[];
   availability: Availability;
   is_new: boolean;

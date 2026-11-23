@@ -24,6 +24,13 @@ function price(usdCents: number): Price {
   };
 }
 
+/** Simulates an active offer: `price` = offer price, `compare_at_price` = regular price. */
+function offer(regularCents: number, offerCents: number) {
+  return { price: price(offerCents), compare_at_price: price(regularCents) };
+}
+
+const regular = (usdCents: number) => ({ price: price(usdCents), compare_at_price: null });
+
 function image(
   id: number,
   file: string,
@@ -57,7 +64,7 @@ export const mockProducts: ProductSummary[] = [
     slug: "noir-gilded-set",
     name: { ar: "طقم نوار المذهّب", en: "Noir Gilded Set" },
     category: loungeSets,
-    price: price(3200),
+    ...offer(3200, 2600),
     colors: [
       {
         color: colors.black,
@@ -75,7 +82,7 @@ export const mockProducts: ProductSummary[] = [
     slug: "winter-deer-set",
     name: { ar: "طقم غزال الشتاء", en: "Winter Deer Set" },
     category: loungeSets,
-    price: price(2800),
+    ...regular(2800),
     colors: [
       {
         color: colors.cream,
@@ -93,7 +100,7 @@ export const mockProducts: ProductSummary[] = [
     slug: "midnight-crossneck-set",
     name: { ar: "طقم ميدنايت", en: "Midnight Cross-Neck Set" },
     category: loungeSets,
-    price: price(2500),
+    ...regular(2500),
     colors: [
       {
         color: colors.navy,
@@ -111,7 +118,7 @@ export const mockProducts: ProductSummary[] = [
     slug: "cocoa-velvet-set",
     name: { ar: "طقم كاكاو المخمل المطرّز", en: "Cocoa Velvet Set" },
     category: loungeSets,
-    price: price(3800),
+    ...offer(3800, 3000),
     colors: [
       {
         color: colors.cocoa,

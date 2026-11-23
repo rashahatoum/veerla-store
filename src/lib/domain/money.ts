@@ -10,6 +10,15 @@ const centsFormat = new Intl.NumberFormat("en-US", {
 });
 
 /**
+ * Whole-percent discount of an offer, computed on USD cents (the source
+ * currency). Returns 0 when there is no real discount.
+ */
+export function discountPercent(price: Money, compareAt: Money): number {
+  if (compareAt.amount <= 0 || price.amount >= compareAt.amount) return 0;
+  return Math.round(((compareAt.amount - price.amount) * 100) / compareAt.amount);
+}
+
+/**
  * Display-only formatting. Never use the result for arithmetic.
  * USD amounts are cents; SYP amounts are whole pounds.
  */

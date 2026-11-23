@@ -49,9 +49,10 @@ A separate developer builds the Laravel backend. The frontend (storefront + dash
 - **Fonts:** Arabic headings Aref Ruqaa (hand-written Ruqaa); body/UI Cairo (both languages); English headings Cormorant Garamond; Cinzel stays for small Latin labels. Replaces Amiri / IBM Plex Sans Arabic.
 - **Look:** pill buttons, 16px card radius, soft shadows and hover lift; reusable UI primitives in `src/components/ui/` (Button, IconButton, Card, SectionHeading).
 - **Hero:** clicking the logo replays the whole intro. Background image is owner-managed.
-- **Home sections, in order:** hero → values → Offers (slider) → Best sellers (slider) → New arrivals → About (`#about`) → How your order works → footer.
+- **Home sections, in order:** hero → values → Offers (grid) → Best sellers (slider) → New arrivals (slider) → About (`#about`) → How your order works → footer.
 - **Owner-managed content (dashboard):** hero background; Offers, Best sellers and New arrivals are **hand-picked ordered lists** with on/off switches (Offers is hidden when off or empty); About text editable, owner's default text supplied.
+- **Product layout:** sliders and grids show 2 whole cards per row on phones (more products per glance, consistent with the grid), 3 on tablets, 4 on desktop.
 - **Offers rule:** per-product offer price in USD (SYP derived) with optional end date; storefront shows the old price struck through.
 - **Removed from HOME_SPEC:** categories, gift section, Golden Feather collection, #veerla_at_home gallery, newsletter. Categories may return as filters/tabs on the products page.
 - **Products page** (`/products`) lists all products; reads `?tag=offers` and `?sort=` from the nav links.
-- **Proposed, awaiting owner confirmation:** customer reviews tied to products (only after a confirmed order, published after owner approval) + a home "reviews" slider with owner-picked reviews after "How your order works".
+- **Customer reviews (approved 2026-11-23):** reviews belong to a product (rating 1–5 + text), can be written only for a confirmed order, and are published only after owner approval. The home page gets a "reviews" slider with owner-picked approved reviews, placed after "How your order works", reusing the shared `Carousel`.

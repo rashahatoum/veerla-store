@@ -107,6 +107,13 @@ Single-row settings-like table (or JSON setting) edited from the dashboard:
   - Archived/draft products are silently skipped in the public response.
 - `about` — `enabled`, `title{ar,en}`, `lead{ar,en}`, `body[]{ar,en}` (paragraphs), `closing{ar,en}`. Plain text only (no HTML) — the storefront handles the styling. Default text is in `src/mocks/home-content.ts`.
 
+### Customer reviews [CONFIRMED 2026-11-23]
+- **reviews** — `id, product_id, order_id, customer_display_name (e.g. first name + city initial), rating (1–5), body (plain text, max ~600 chars), status (pending|approved|rejected), created_at, approved_at`.
+- Only for a **confirmed order** that contains the product: after confirmation the owner can send the customer a one-time review link (signed token, expires e.g. 30 days, one review per order line). No customer accounts needed.
+- Nothing is public until the owner **approves** it in the dashboard. Never expose phone numbers or full names.
+- Public product data gains `rating_average` and `rating_count` (approved reviews only).
+- Home: the owner picks approved reviews for the home slider → `home_section_reviews (review_id, sort_order)` and `reviews: {enabled, items[]}` in `GET /storefront/home`.
+
 ### Inventory & cost
 - **[CONFIRMED]** There is **no fixed cost per product/variant**. Each purchased piece/batch has its own cost.
 - **purchase_lots** — `id, variant_id, quantity_received, quantity_remaining, unit_cost, supplier (nullable), purchased_at, note`.
@@ -217,6 +224,8 @@ Saving the home content (hero, section picks, about text) sends `{ "tags": ["hom
 | POST | `/cart/validate` | Body: `[{variant_id, quantity}]` → current prices, availability, line totals, problems per line |
 | POST | `/checkout-intents` | Creates a pending intent; returns `reference` + ready-to-send WhatsApp message text + WhatsApp number |
 | GET | `/settings/public` | Store WhatsApp number, pickup location, fulfillment methods, currency |
+| GET | `/products/{slug}/reviews?page=` | Approved reviews of a product |
+| GET | `/reviews/invite/{token}` · POST `/reviews` | Review form data for a valid invite token; submit a review (status `pending`) |
 | GET | `/storefront/home` | Home content in one call: `hero.background {url,width,height,alt}`, `offers`, `best_sellers`, `new_arrivals` (each `{enabled, products: ProductSummary[]}` already resolved and ordered), `about {enabled,title,lead,body[],closing}`. Shape: `src/types/content.ts` |
 
 ## 10. Endpoints — Admin (auth required) [PROPOSED]
@@ -234,6 +243,7 @@ Saving the home content (hero, section picks, about text) sends `{ "tags": ["hom
 | Marketers | CRUD `/admin/marketers`, `GET /admin/marketers/{id}/summary?from&to` |
 | Finance | CRUD `/admin/capital-contributions`, CRUD `/admin/expenses` |
 | Reports | `GET /admin/reports/profit?from&to`, `GET /admin/reports/inventory`, `GET /admin/reports/sales?from&to&group_by=` |
+| Reviews | `GET /admin/reviews?status=pending`, `POST /admin/reviews/{id}/approve`, `POST .../reject`, `POST /admin/orders/{id}/review-invite` (creates the signed link to send on WhatsApp) |
 | Home content | `GET/PUT /admin/storefront/home` (about text, section switches, ordered product ids per section), `POST /admin/storefront/home/hero-background` (multipart image) |
 | Settings | `GET/PUT /admin/settings` (WhatsApp number, pickup address, low-stock threshold, enabled payment methods, delivery default fees, SYP rounding step) |
 | Exchange rate | `GET /admin/exchange-rates` (history), `POST /admin/exchange-rates` (set new USD→SYP rate) |
@@ -258,6 +268,7 @@ Online payment gateway, customer accounts/login, marketer login, multi-warehouse
 
 | Date | Change |
 |---|---|
+| 2026-11-23 | Added **customer reviews**: per product, only for confirmed orders via a signed invite link, owner approval before publishing, rating aggregates on products, owner-picked reviews on the home page. Public `ProductSummary` now includes `compare_at_price` (null without an active offer). |
 | 2026-11-23 | Added **offers** (`offer_price` + optional `offer_ends_at`, public `compare_at_price`) and **owner-managed home content** (hero background, hand-picked offers / best sellers / new arrivals with on/off switches, editable About text) with `GET /storefront/home`, admin endpoints and the `home-content` revalidation tag. |
 | 2026-11-19 | Confirmed: SYP rounding to nearest 10 new SYP; delivery defaults 1.00 / 2.50 USD; default shopper display currency USD. |
 | 2026-11-19 | Payment: no online gateway; methods `sham_cash` and `cash_on_delivery`, each toggleable in settings; chosen method sent in the WhatsApp message and stored on the order. Added exchange-rate admin endpoints. |
