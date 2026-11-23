@@ -58,6 +58,18 @@
     "quality": "جودة تدوم",
     "comfort": "راحة في البيت"
   },
+  "offers": {
+    "title": "العروض",
+    "subtitle": "قطع مختارة بأسعار خاصة لفترة محدودة"
+  },
+  "bestSellers": {
+    "title": "الأكثر مبيعاً",
+    "subtitle": "القطع يلي حبّتها عميلاتنا أكتر شي"
+  },
+  "carousel": {
+    "previous": "السابق",
+    "next": "التالي"
+  },
   "newArrivals": {
     "title": "وصل حديثاً",
     "subtitle": "قطع جديدة اخترناها إلك"
@@ -66,7 +78,9 @@
     "lowStock": "كمية محدودة",
     "outOfStock": "نفذت الكمية",
     "colorsCount": "{count} ألوان",
-    "colorLabel": "اللون: {name}"
+    "colorLabel": "اللون: {name}",
+    "nowPrice": "السعر بعد الخصم:",
+    "wasPrice": "السعر قبل الخصم:"
   },
   "howToOrder": {
     "title": "كيف بيمشي طلبك",

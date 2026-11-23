@@ -58,6 +58,18 @@
     "quality": "Lasting quality",
     "comfort": "Home comfort"
   },
+  "offers": {
+    "title": "Offers",
+    "subtitle": "Selected pieces at special prices, for a limited time"
+  },
+  "bestSellers": {
+    "title": "Best sellers",
+    "subtitle": "The pieces our customers love most"
+  },
+  "carousel": {
+    "previous": "Previous",
+    "next": "Next"
+  },
   "newArrivals": {
     "title": "New arrivals",
     "subtitle": "Fresh pieces we picked for you"
@@ -66,7 +78,9 @@
     "lowStock": "Limited stock",
     "outOfStock": "Sold out",
     "colorsCount": "{count} colors",
-    "colorLabel": "Color: {name}"
+    "colorLabel": "Color: {name}",
+    "nowPrice": "Sale price:",
+    "wasPrice": "Regular price:"
   },
   "howToOrder": {
     "title": "How your order works",

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Card } from "@/components/ui/card";
 import { format, getDictionary, getLocale } from "@/i18n/get-dictionary";
 import { localize } from "@/lib/domain/localize";
+import { discountPercent } from "@/lib/domain/money";
 import type { ProductSummary } from "@/types/catalog";
 import { Price } from "./price";
 
@@ -10,11 +11,14 @@ type Props = {
   product: ProductSummary;
   /** Card width hint for responsive images. */
   sizes?: string;
+  /** Position in a ranked list (Best sellers): shown as a gold numbered badge. */
+  rank?: number;
 };
 
 export async function ProductCard({
   product,
   sizes = "(min-width: 1024px) 25vw, 50vw",
+  rank,
 }: Props) {
   const [locale, dict] = await Promise.all([getLocale(), getDictionary()]);
   const [first] = product.colors;
@@ -26,9 +30,12 @@ export async function ProductCard({
       : product.availability === "out_of_stock"
         ? dict.product.outOfStock
         : null;
+  const discount = product.compare_at_price
+    ? discountPercent(product.price.usd, product.compare_at_price.usd)
+    : 0;
 
   return (
-    <Card className="flex flex-col">
+    <Card className="flex h-full flex-col">
       {/* Image link duplicates the title link, so it is hidden from keyboard/AT. */}
       <Link
         href={`/${locale}/products/${product.slug}`}
@@ -44,14 +51,30 @@ export async function ProductCard({
           sizes={sizes}
           className="aspect-3/4 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
         />
-        {badge && (
-          <span className="absolute inset-s-10 top-10 rounded-full bg-card/90 px-12 py-4 text-xs font-semibold text-plum-800 shadow-soft backdrop-blur-sm">
-            {badge}
+        {/* Only the short discount badge sits on the photo; everything else is in the card body. */}
+        {discount > 0 && (
+          // dir="ltr" stays on the inner text: on the outer span it would flip inset-s.
+          <span className="absolute inset-s-8 top-8 rounded-full bg-sale px-10 py-3 text-xs font-bold text-ivory-text shadow-soft">
+            <bdi dir="ltr">-{discount}%</bdi>
           </span>
         )}
       </Link>
 
-      <div className="flex flex-col gap-6 px-16 pt-12 pb-16">
+      <div className="flex flex-1 flex-col gap-6 px-16 pt-12 pb-16">
+        {(rank !== undefined || badge) && (
+          <div className="flex flex-wrap items-center gap-6">
+            {rank !== undefined && (
+              <span className="inline-flex h-24 min-w-24 items-center justify-center rounded-full bg-plum-900 px-8 text-xs font-bold text-gold-300 ring-1 ring-gold-500/60">
+                #{rank}
+              </span>
+            )}
+            {badge && (
+              <span className="inline-flex h-24 items-center rounded-full bg-sale/10 px-10 text-[11px] font-semibold whitespace-nowrap text-sale">
+                {badge}
+              </span>
+            )}
+          </div>
+        )}
         <h3 className="text-[15px] leading-snug font-semibold">
           {/* The stretched ::after makes the whole card clickable. */}
           <Link
@@ -61,14 +84,18 @@ export async function ProductCard({
             {name}
           </Link>
         </h3>
-        <Price price={product.price} className="text-sm font-semibold text-plum-800" />
-        <ul className="flex items-center gap-6" aria-label={format(dict.product.colorsCount, { count: product.colors.length })}>
+        <Price
+          price={product.price}
+          compareAt={product.compare_at_price}
+          className="mt-auto text-sm font-semibold text-plum-800"
+        />
+        <ul className="mt-2 flex items-center gap-8" aria-label={format(dict.product.colorsCount, { count: product.colors.length })}>
           {product.colors.map(({ color }) => {
             const colorName = localize(color.name, locale);
             return (
               <li key={color.id}>
                 <span
-                  className="block size-14 rounded-full border border-border-strong shadow-[inset_0_0_0_2px_var(--color-card)]"
+                  className="block size-20 rounded-full border border-border-strong shadow-[inset_0_0_0_2px_var(--color-card)]"
                   style={{ backgroundColor: color.hex }}
                   title={colorName}
                 />
