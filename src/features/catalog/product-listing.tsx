@@ -73,7 +73,7 @@ export async function ProductListing({ searchParams }: { searchParams: SearchPar
           </Link>
         </nav>
 
-        <nav aria-label={t.sortLabel} className="-mx-16 flex items-center gap-8 overflow-x-auto px-16 pb-2 [scrollbar-width:none] md:mx-0 md:px-0 [&::-webkit-scrollbar]:hidden">
+        <nav aria-label={t.sortLabel} className="-mx-16 flex items-center gap-8 overflow-x-auto px-16 pb-2 scrollbar-none md:mx-0 md:px-0 [&::-webkit-scrollbar]:hidden">
           <span className="shrink-0 text-sm text-mauve-600">{t.sortLabel}:</span>
           {PRODUCT_SORTS.map((sort) => (
             <Link

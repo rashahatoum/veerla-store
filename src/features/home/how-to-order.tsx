@@ -69,7 +69,7 @@ export async function HowToOrder() {
                   {icons[index]}
                 </span>
                 <h3 className="text-lg font-bold text-plum-900">{step.title}</h3>
-                <p className="max-w-320 text-sm leading-[1.9] text-mauve-600">{step.text}</p>
+                <p className="max-w-xs text-sm leading-[1.9] text-mauve-600">{step.text}</p>
               </Card>
             </li>
           ))}
