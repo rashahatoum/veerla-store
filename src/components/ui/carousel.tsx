@@ -66,7 +66,7 @@ export function Carousel({ items, label, labels, itemClassName = defaultItem }: 
         ref={listRef}
         onScroll={update}
         aria-label={label}
-        className="-mx-16 flex snap-x snap-mandatory scroll-px-16 gap-12 overflow-x-auto px-16 pt-6 pb-24 [scrollbar-width:none] md:-mx-32 md:scroll-px-32 md:gap-24 md:px-32 [&::-webkit-scrollbar]:hidden"
+        className="-mx-16 flex snap-x snap-mandatory scroll-px-16 gap-12 overflow-x-auto px-16 pt-6 pb-24 scrollbar-none md:-mx-32 md:scroll-px-32 md:gap-24 md:px-32 [&::-webkit-scrollbar]:hidden"
       >
         {items.map((item, index) => (
           <li key={index} className={cx("shrink-0 snap-start", itemClassName)}>
