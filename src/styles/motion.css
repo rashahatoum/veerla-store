@@ -176,6 +176,26 @@
   transition: clip-path 0.9s ease;
 }
 
+/* Announcement ticker (phones only — see SiteHeader). Two identical copies
+   move by exactly one copy's width, so the loop has no visible jump. */
+/* display stays in Tailwind (`flex sm:hidden`): unlayered CSS would beat `sm:hidden`. */
+.announce-ticker {
+  width: max-content;
+  animation: tickerLtr 24s linear infinite;
+}
+[dir="rtl"] .announce-ticker {
+  animation-name: tickerRtl;
+}
+.announce-ticker:hover {
+  animation-play-state: paused;
+}
+@keyframes tickerLtr {
+  to { transform: translateX(-50%); }
+}
+@keyframes tickerRtl {
+  to { transform: translateX(50%); }
+}
+
 /* §4.4 Silk edges */
 .wave-box {
   position: absolute;
@@ -229,6 +249,22 @@
     animation: none !important;
   }
   .lg-pen {
+    display: none;
+  }
+  /* Ticker: no movement — show every announcement wrapped and centered. */
+  .announce-ticker {
+    animation: none;
+    width: auto;
+    justify-content: center;
+    padding-inline: 16px;
+  }
+  .announce-ticker > ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 4px;
+    padding-inline-end: 0;
+  }
+  .announce-ticker > ul[aria-hidden="true"] {
     display: none;
   }
   .btn-gold,

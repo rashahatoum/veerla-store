@@ -105,7 +105,7 @@ Single-row settings-like table (or JSON setting) edited from the dashboard:
   - `new_arrivals` — also chosen by hand, same reason.
   - Storage: pivot `home_section_products (section, product_id, sort_order)`.
   - Archived/draft products are silently skipped in the public response.
-- `about` — `enabled`, `title{ar,en}`, `lead{ar,en}`, `body[]{ar,en}` (paragraphs), `closing{ar,en}`. Plain text only (no HTML) — the storefront handles the styling. Default text is in `src/mocks/home-content.ts`.
+- `about` — `enabled`, `image` (one uploaded image, **portrait 4:5, recommended 1200×1500**, WebP, with `alt{ar,en}` describing it), `title{ar,en}`, `lead{ar,en}`, `body[]{ar,en}` (paragraphs), `closing{ar,en}`. Plain text only (no HTML) — the storefront handles the styling. Default text is in `src/mocks/home-content.ts`.
 
 ### Customer reviews [CONFIRMED 2026-11-23]
 - **reviews** — `id, product_id, order_id, customer_display_name (e.g. first name + city initial), rating (1–5), body (plain text, max ~600 chars), status (pending|approved|rejected), created_at, approved_at`.
@@ -244,7 +244,7 @@ Saving the home content (hero, section picks, about text) sends `{ "tags": ["hom
 | Finance | CRUD `/admin/capital-contributions`, CRUD `/admin/expenses` |
 | Reports | `GET /admin/reports/profit?from&to`, `GET /admin/reports/inventory`, `GET /admin/reports/sales?from&to&group_by=` |
 | Reviews | `GET /admin/reviews?status=pending`, `POST /admin/reviews/{id}/approve`, `POST .../reject`, `POST /admin/orders/{id}/review-invite` (creates the signed link to send on WhatsApp) |
-| Home content | `GET/PUT /admin/storefront/home` (about text, section switches, ordered product ids per section), `POST /admin/storefront/home/hero-background` (multipart image) |
+| Home content | `GET/PUT /admin/storefront/home` (about text, section switches, ordered product ids per section), `POST /admin/storefront/home/hero-background` and `POST /admin/storefront/home/about-image` (multipart image + `alt{ar,en}`) |
 | Settings | `GET/PUT /admin/settings` (WhatsApp number, pickup address, low-stock threshold, enabled payment methods, delivery default fees, SYP rounding step) |
 | Exchange rate | `GET /admin/exchange-rates` (history), `POST /admin/exchange-rates` (set new USD→SYP rate) |
 
@@ -268,6 +268,7 @@ Online payment gateway, customer accounts/login, marketer login, multi-warehouse
 
 | Date | Change |
 |---|---|
+| 2026-11-23 | About section gains an owner-managed `image` (4:5, 1200×1500) with `alt{ar,en}`; upload endpoint `POST /admin/storefront/home/about-image`. |
 | 2026-11-23 | `GET /products` gains `tag=offers`. `GET /storefront/home` gains `reviews {enabled, items[]}` (shape: `Review` in `src/types/content.ts`). |
 | 2026-11-23 | Added **customer reviews**: per product, only for confirmed orders via a signed invite link, owner approval before publishing, rating aggregates on products, owner-picked reviews on the home page. Public `ProductSummary` now includes `compare_at_price` (null without an active offer). |
 | 2026-11-23 | Added **offers** (`offer_price` + optional `offer_ends_at`, public `compare_at_price`) and **owner-managed home content** (hero background, hand-picked offers / best sellers / new arrivals with on/off switches, editable About text) with `GET /storefront/home`, admin endpoints and the `home-content` revalidation tag. |

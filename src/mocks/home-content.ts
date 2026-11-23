@@ -63,6 +63,15 @@ export const mockHomeContent: HomeContent = {
   new_arrivals: { enabled: true, products: pick([1, 2, 3, 4]) },
   about: {
     enabled: true,
+    image: {
+      url: "/assets/imgs/veerla/about-story.webp",
+      width: 1200,
+      height: 1500,
+      alt: {
+        ar: "مشغل VEERLA: مانيكان بجاكيت خمري ووشاح مطبوع بالريش، ودفتر تصاميم، وعلبة هدية VEERLA بشريطة ساتان",
+        en: "The VEERLA studio: a mannequin in a burgundy jacket with a feather-print scarf, a sketchbook, and a VEERLA gift box with a satin ribbon",
+      },
+    },
     title: { ar: "من نحن | حكاية VEERLA", en: "About Us | The Story of VEERLA" },
     lead: {
       ar: "لأن الأناقة ليست مجرد ما نرتديه، بل ما نشعر به.",
