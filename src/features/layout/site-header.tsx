@@ -55,16 +55,34 @@ export async function SiteHeader({ showLogo = true }: Props) {
       <div aria-hidden="true" className="absolute inset-0 bg-plum-950/55" />
 
       {/* Announcement bar */}
-      <div className="relative bg-[rgba(20,4,15,0.55)] px-16 py-8 text-[13px] text-gold-ink">
+      <div className="relative overflow-hidden bg-[rgba(20,4,15,0.55)] py-8 text-[13px] text-gold-ink">
+        {/* Phones: all announcements scroll as a CSS ticker (two identical copies
+            make the loop seamless; the copy is hidden from assistive tech). */}
+        <div className="announce-ticker flex sm:hidden">
+          {[false, true].map((isCopy) => (
+            <ul
+              key={String(isCopy)}
+              aria-label={isCopy ? undefined : dict.announcement.label}
+              aria-hidden={isCopy || undefined}
+              className="flex shrink-0 items-center gap-22 pe-22"
+            >
+              {announcements.map((text) => (
+                <li key={text} className="flex items-center gap-22 whitespace-nowrap">
+                  <span aria-hidden="true" className="size-4 rotate-45 bg-gold-500" />
+                  {text}
+                </li>
+              ))}
+            </ul>
+          ))}
+        </div>
+
+        {/* Tablets and up: everything fits, static and centered. */}
         <ul
           aria-label={dict.announcement.label}
-          className="flex flex-wrap items-center justify-center gap-x-22 gap-y-4 text-center"
+          className="hidden flex-wrap items-center justify-center gap-x-22 gap-y-4 px-16 text-center sm:flex"
         >
           {announcements.map((text, index) => (
-            <li
-              key={text}
-              className={`items-center gap-22 ${index === 0 ? "flex" : "hidden sm:flex"}`}
-            >
+            <li key={text} className="flex items-center gap-22">
               {index > 0 && (
                 <span aria-hidden="true" className="size-4 rotate-45 bg-gold-500" />
               )}

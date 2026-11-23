@@ -64,11 +64,9 @@ export async function HowToOrder() {
           {steps.map((step, index) => (
             <li key={step.title}>
               <Card interactive={false} className="flex h-full flex-col items-center gap-12 px-24 pt-28 pb-28 text-center">
-                <span className="relative flex size-64 items-center justify-center rounded-full bg-nude-100 text-plum-700 ring-1 ring-gold-500/40">
+                {/* Order is still conveyed by the <ol>; no visible step numbers (owner). */}
+                <span className="flex size-64 items-center justify-center rounded-full bg-nude-100 text-plum-700 ring-1 ring-gold-500/40">
                   {icons[index]}
-                  <span className="absolute -top-4 -end-4 flex size-24 items-center justify-center rounded-full bg-plum-900 text-xs font-bold text-gold-300">
-                    {index + 1}
-                  </span>
                 </span>
                 <h3 className="text-lg font-bold text-plum-900">{step.title}</h3>
                 <p className="max-w-320 text-sm leading-[1.9] text-mauve-600">{step.text}</p>
