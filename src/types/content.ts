@@ -30,6 +30,25 @@ export type AboutSection = {
   closing: Localized;
 };
 
+/** An approved customer review (BACKEND_REQUIREMENTS §4 Customer reviews). */
+export type Review = {
+  id: number;
+  /** Never a full name or phone: e.g. "Rania · Damascus". */
+  customer_display_name: string;
+  /** 1–5 */
+  rating: number;
+  /** As written by the customer, in her language — not translated. */
+  body: string;
+  product: { slug: string; name: Localized };
+  created_at: string;
+};
+
+export type ReviewsSection = {
+  enabled: boolean;
+  /** Owner-picked approved reviews, in order. */
+  items: Review[];
+};
+
 export type HomeContent = {
   hero: {
     background: MediaImage;
@@ -38,4 +57,5 @@ export type HomeContent = {
   best_sellers: CuratedProductsSection;
   new_arrivals: CuratedProductsSection;
   about: AboutSection;
+  reviews: ReviewsSection;
 };
