@@ -69,7 +69,12 @@ export type ProductSummary = {
   is_new: boolean;
 };
 
+export const PRODUCT_SORTS = ["newest", "best_selling", "price_asc", "price_desc"] as const;
+export type ProductSort = (typeof PRODUCT_SORTS)[number];
+
 export type ProductListQuery = {
-  sort?: "newest" | "best_selling" | "price_asc" | "price_desc";
+  sort?: ProductSort;
+  /** "offers" = only products with an active offer. */
+  tag?: "offers";
   limit?: number;
 };
