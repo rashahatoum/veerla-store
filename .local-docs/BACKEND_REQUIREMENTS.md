@@ -178,7 +178,7 @@ Single-row settings-like table (or JSON setting) edited from the dashboard:
 - No external search service (Algolia/Elastic) unless the catalog grows into thousands of products.
 
 ### Filters
-`category`, `size[]` (multi), `color[]` (multi), `price_min`, `price_max`, `in_stock`, `sort` (`newest|best_selling|price_asc|price_desc`). Return **facet counts** so the UI can show "(12)" next to each option and hide empty ones.
+`category`, `size[]` (multi), `color[]` (multi), `price_min`, `price_max`, `in_stock`, `tag` (`offers` = only products with an active offer — used by the "Offers" nav link), `sort` (`newest|best_selling|price_asc|price_desc`). Return **facet counts** so the UI can show "(12)" next to each option and hide empty ones.
 
 ### Recommendations (`/products/{slug}/related`)
 Deterministic score; never invent attributes or stock:
@@ -268,6 +268,7 @@ Online payment gateway, customer accounts/login, marketer login, multi-warehouse
 
 | Date | Change |
 |---|---|
+| 2026-11-23 | `GET /products` gains `tag=offers`. `GET /storefront/home` gains `reviews {enabled, items[]}` (shape: `Review` in `src/types/content.ts`). |
 | 2026-11-23 | Added **customer reviews**: per product, only for confirmed orders via a signed invite link, owner approval before publishing, rating aggregates on products, owner-picked reviews on the home page. Public `ProductSummary` now includes `compare_at_price` (null without an active offer). |
 | 2026-11-23 | Added **offers** (`offer_price` + optional `offer_ends_at`, public `compare_at_price`) and **owner-managed home content** (hero background, hand-picked offers / best sellers / new arrivals with on/off switches, editable About text) with `GET /storefront/home`, admin endpoints and the `home-content` revalidation tag. |
 | 2026-11-19 | Confirmed: SYP rounding to nearest 10 new SYP; delivery defaults 1.00 / 2.50 USD; default shopper display currency USD. |
