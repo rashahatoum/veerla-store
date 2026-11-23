@@ -116,7 +116,9 @@ export async function SiteHeader({ showLogo = true }: Props) {
           </nav>
         </div>
 
-        <div className="flex items-center gap-8">
+        {/* Phones: search / wishlist / bag at the start (right in Arabic), logo in
+            the middle, menu at the end (left). Desktop: logo + nav, then actions. */}
+        <div className="flex items-center gap-8 max-lg:order-first">
           <div className="me-8 hidden items-center gap-8 lg:flex">{switches}</div>
           <IconLink href={`/${locale}/search`} aria-label={dict.actions.search}>
             <SearchIcon />
@@ -127,6 +129,9 @@ export async function SiteHeader({ showLogo = true }: Props) {
           <IconLink href={`/${locale}/cart`} aria-label={dict.actions.cart}>
             <BagIcon />
           </IconLink>
+        </div>
+
+        <div className="flex lg:hidden">
           <MobileMenu
             links={links}
             labels={{

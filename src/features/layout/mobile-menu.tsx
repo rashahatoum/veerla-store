@@ -30,9 +30,11 @@ export function MobileMenu({ links, labels, switches }: Props) {
       <div
         id={MENU_ID}
         popover="auto"
-        className="m-0 h-dvh max-h-none w-[min(320px,86vw)] border-0 bg-plum-950 p-0 text-ivory-text inset-y-0 inset-s-0 inset-e-auto backdrop:bg-plum-950/60"
+        className="m-0 h-dvh max-h-none w-[min(320px,86vw)] border-0 bg-plum-950 p-0 text-ivory-text inset-y-0 inset-e-0 inset-s-auto backdrop:bg-plum-950/60"
       >
-        <div className="flex h-full flex-col gap-24 border-e border-gold-500/40 px-24 py-20">
+        {/* Opens from the end side, next to the menu button. */}
+        <div className="flex h-full flex-col gap-24 border-s border-gold-500/40 px-24 py-20">
+          {/* Close button sits where the menu button was (end side). */}
           <div className="flex justify-end">
             <button
               type="button"
