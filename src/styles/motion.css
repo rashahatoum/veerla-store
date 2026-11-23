@@ -130,6 +130,11 @@
 [data-intro="seen"] .logo-stage:hover .lg-sheen {
   animation: sheenHover 1.2s ease-out both;
 }
+/* While the intro plays (e.g. replayed by a click, so the pointer is over the
+   logo), the hover sheen must not override the timed intro sheen. */
+[data-intro="play"] .logo-stage:hover .lg-sheen {
+  animation: sheen 1.4s ease-out 3.35s both;
+}
 
 /* §4.3 Gold sheen on buttons */
 .btn-gold {

@@ -27,7 +27,8 @@
   "actions": {
     "search": "Search",
     "wishlist": "Wishlist",
-    "cart": "Bag"
+    "cart": "Bag",
+    "viewAll": "View all"
   },
   "switches": {
     "currencyLabel": "Currency",
@@ -47,7 +48,8 @@
     "title": "Softness made for your moments at home",
     "subtitle": "Luxury velvet and satin homewear, designed to bring warmth and elegance to every detail of your day.",
     "ctaPrimary": "Shop the collection",
-    "ctaSecondary": "Discover gifts"
+    "ctaSecondary": "Discover gifts",
+    "replayIntro": "replay the logo animation"
   },
   "values": {
     "title": "Why VEERLA",

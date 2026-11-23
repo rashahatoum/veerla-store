@@ -91,6 +91,22 @@ Column names are suggestions; relationships and rules are the requirement.
 - **product_images** — `id, product_id, color_id, path, width, height, alt{ar,en}, role (main|back|detail|other), sort_order`.
 - **search_synonyms** — `term, synonyms[]` editable from the dashboard (e.g. بيجاما = بجامة = pajama).
 
+### Offers (sale price) [CONFIRMED 2026-11-23]
+- On `products`: `offer_price (nullable, USD)`, `offer_ends_at (nullable datetime)`. An offer is **active** when `offer_price` is set, lower than `base_price`, and `offer_ends_at` is null or in the future.
+- While active, public endpoints return `price` = the offer price (SYP derived and rounded as usual) and `compare_at_price` = the regular price (both currencies), so the storefront can show the old price struck through and a discount badge. When it expires, `compare_at_price` becomes `null` automatically.
+- The order line snapshots the price actually charged (rule §5.3 snapshots), so ending an offer never changes past orders.
+
+### Storefront content (owner-managed home page) [CONFIRMED 2026-11-23]
+Single-row settings-like table (or JSON setting) edited from the dashboard:
+- `hero_background` — one uploaded image (landscape, recommended ≥ 2400×1350, WebP) + `alt{ar,en}` (may be empty = decorative).
+- Three **hand-picked, ordered product lists**, each with an `enabled` switch:
+  - `offers` — products shown in the Offers slider. If disabled **or** empty (after filtering), the storefront hides the section entirely.
+  - `best_sellers` — chosen by the owner, **not computed from sales** (the owner wants trending pieces to stay visible).
+  - `new_arrivals` — also chosen by hand, same reason.
+  - Storage: pivot `home_section_products (section, product_id, sort_order)`.
+  - Archived/draft products are silently skipped in the public response.
+- `about` — `enabled`, `title{ar,en}`, `lead{ar,en}`, `body[]{ar,en}` (paragraphs), `closing{ar,en}`. Plain text only (no HTML) — the storefront handles the styling. Default text is in `src/mocks/home-content.ts`.
+
 ### Inventory & cost
 - **[CONFIRMED]** There is **no fixed cost per product/variant**. Each purchased piece/batch has its own cost.
 - **purchase_lots** — `id, variant_id, quantity_received, quantity_remaining, unit_cost, supplier (nullable), purchased_at, note`.
@@ -187,6 +203,8 @@ Body: { "tags": ["products", "product:noir-gilded-set", "category:sets"] }
 ```
 Fire-and-forget (queue it); failure must not break the admin action.
 
+Saving the home content (hero, section picks, about text) sends `{ "tags": ["home-content"] }`.
+
 ## 9. Endpoints — Public [PROPOSED]
 
 | Method | Path | Purpose |
@@ -199,6 +217,7 @@ Fire-and-forget (queue it); failure must not break the admin action.
 | POST | `/cart/validate` | Body: `[{variant_id, quantity}]` → current prices, availability, line totals, problems per line |
 | POST | `/checkout-intents` | Creates a pending intent; returns `reference` + ready-to-send WhatsApp message text + WhatsApp number |
 | GET | `/settings/public` | Store WhatsApp number, pickup location, fulfillment methods, currency |
+| GET | `/storefront/home` | Home content in one call: `hero.background {url,width,height,alt}`, `offers`, `best_sellers`, `new_arrivals` (each `{enabled, products: ProductSummary[]}` already resolved and ordered), `about {enabled,title,lead,body[],closing}`. Shape: `src/types/content.ts` |
 
 ## 10. Endpoints — Admin (auth required) [PROPOSED]
 
@@ -215,6 +234,7 @@ Fire-and-forget (queue it); failure must not break the admin action.
 | Marketers | CRUD `/admin/marketers`, `GET /admin/marketers/{id}/summary?from&to` |
 | Finance | CRUD `/admin/capital-contributions`, CRUD `/admin/expenses` |
 | Reports | `GET /admin/reports/profit?from&to`, `GET /admin/reports/inventory`, `GET /admin/reports/sales?from&to&group_by=` |
+| Home content | `GET/PUT /admin/storefront/home` (about text, section switches, ordered product ids per section), `POST /admin/storefront/home/hero-background` (multipart image) |
 | Settings | `GET/PUT /admin/settings` (WhatsApp number, pickup address, low-stock threshold, enabled payment methods, delivery default fees, SYP rounding step) |
 | Exchange rate | `GET /admin/exchange-rates` (history), `POST /admin/exchange-rates` (set new USD→SYP rate) |
 
@@ -238,6 +258,7 @@ Online payment gateway, customer accounts/login, marketer login, multi-warehouse
 
 | Date | Change |
 |---|---|
+| 2026-11-23 | Added **offers** (`offer_price` + optional `offer_ends_at`, public `compare_at_price`) and **owner-managed home content** (hero background, hand-picked offers / best sellers / new arrivals with on/off switches, editable About text) with `GET /storefront/home`, admin endpoints and the `home-content` revalidation tag. |
 | 2026-11-19 | Confirmed: SYP rounding to nearest 10 new SYP; delivery defaults 1.00 / 2.50 USD; default shopper display currency USD. |
 | 2026-11-19 | Payment: no online gateway; methods `sham_cash` and `cash_on_delivery`, each toggleable in settings; chosen method sent in the WhatsApp message and stored on the order. Added exchange-rate admin endpoints. |
 | 2026-11-19 | FIFO by lot confirmed. SYP = new redenominated pound; rounding step setting (default 10 new SYP, pending confirmation). Dashboard entirely in USD (prices, costs, expenses, delivery fees). Shopper picks display currency; API returns both. Delivery defaults moved to USD. |

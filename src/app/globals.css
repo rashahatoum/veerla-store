@@ -32,8 +32,14 @@
   --color-sale: #a23b4c;
 
   /* ---------- Shape ---------- */
-  --radius-btn: 2px;
-  --radius-card: 4px;
+  --radius-btn: 999px; /* pill buttons */
+  --radius-card: 16px; /* cards, images */
+  --radius-field: 12px; /* inputs, small panels */
+
+  /* ---------- Elevation (shadow-soft, shadow-lift, shadow-glow) ---------- */
+  --shadow-soft: 0 6px 22px -10px rgb(42 10 32 / 0.22);
+  --shadow-lift: 0 22px 44px -18px rgb(42 10 32 / 0.34);
+  --shadow-glow: 0 10px 30px -8px rgb(201 164 108 / 0.55);
 }
 
 /* ---------- Fonts ----------
@@ -41,10 +47,20 @@
    which loaded font plays which role. `inline` is required because these
    values point at variables defined by next/font. */
 @theme inline {
-  --font-heading: var(--font-amiri), serif; /* Arabic headings, product names */
-  --font-sans: var(--font-plex), system-ui, sans-serif; /* body text (default) */
+  /* Headings switch face per language — see --font-heading-face below. */
+  --font-heading: var(--font-heading-face);
+  --font-sans: var(--font-cairo), system-ui, sans-serif; /* body text (default) */
   --font-label: var(--font-cinzel), serif; /* small spaced Latin labels */
   --font-accent: var(--font-cormorant), serif; /* soft English italic phrases */
+}
+
+/* Heading face: Ruqaa for Arabic pages, Cormorant for English pages
+   (Ruqaa's Latin glyphs are not meant for English headings). */
+:root {
+  --font-heading-face: var(--font-ruqaa), serif;
+}
+:root:lang(en) {
+  --font-heading-face: var(--font-cormorant), serif;
 }
 
 /* Legacy aliases for sections not rebuilt yet — delete once they are replaced. */

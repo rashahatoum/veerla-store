@@ -115,7 +115,8 @@ Zero-JS by design: product gallery (CSS scroll-snap + anchors), color selection 
 ## 9. Styling & brand [PLANNED]
 
 - Tailwind v4 `@theme` tokens in `globals.css` (HOME_SPEC.md §2): plum 950–700, mauve, gold 500/300/700, nude, ivory, card, sale; radii. `--spacing: 1px`. Components never use hex values.
-- Fonts via `next/font/google` in `src/app/fonts.ts`: Amiri (headings), IBM Plex Sans Arabic (body), Cinzel (labels), Cormorant Garamond (accents); roles mapped in `@theme inline` (`font-heading`, `font-sans`, `font-label`, `font-accent`).
+- Fonts via `next/font/google` in `src/app/fonts.ts`: Aref Ruqaa (Arabic headings), Cairo (body), Cormorant Garamond (English headings, accents), Cinzel (labels); roles mapped in `@theme inline` (`font-heading`, `font-sans`, `font-label`, `font-accent`). `font-heading` switches face per language via `--font-heading-face` (`:root:lang(en)`).
+- Owner-managed home content: `HomeContent` (`src/types/content.ts`) via `getHomeContent()` (`lib/repositories/content.ts`, cache tag `home-content`).
 - Motion in `src/styles/motion.css`, CSS only; `prefers-reduced-motion` stops everything. Home logo intro is gated by `<html data-intro>` (pending → play → seen) set by an inline script, so it waits for the logo images and plays once per tab.
 
 ## 10. Images [PLANNED]

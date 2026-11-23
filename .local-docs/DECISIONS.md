@@ -42,4 +42,16 @@ A separate developer builds the Laravel backend. The frontend (storefront + dash
 - Design copy that conflicts with business decisions is replaced: no "free shipping over X SAR", no installments, prices in USD/SYP only.
 - "About us" is a section on the home page (`#about`), not a separate page.
 - A compact "How your order works" section stays before the footer (WhatsApp ≠ confirmed order).
-- Which home content the owner edits from the dashboard: to be agreed later.
+- Which home content the owner edits from the dashboard: to be agreed later. → Agreed in D-005.
+
+## D-005 — Home revision: fonts, sections, owner-managed content (approved 2026-11-23)
+
+- **Fonts:** Arabic headings Aref Ruqaa (hand-written Ruqaa); body/UI Cairo (both languages); English headings Cormorant Garamond; Cinzel stays for small Latin labels. Replaces Amiri / IBM Plex Sans Arabic.
+- **Look:** pill buttons, 16px card radius, soft shadows and hover lift; reusable UI primitives in `src/components/ui/` (Button, IconButton, Card, SectionHeading).
+- **Hero:** clicking the logo replays the whole intro. Background image is owner-managed.
+- **Home sections, in order:** hero → values → Offers (slider) → Best sellers (slider) → New arrivals → About (`#about`) → How your order works → footer.
+- **Owner-managed content (dashboard):** hero background; Offers, Best sellers and New arrivals are **hand-picked ordered lists** with on/off switches (Offers is hidden when off or empty); About text editable, owner's default text supplied.
+- **Offers rule:** per-product offer price in USD (SYP derived) with optional end date; storefront shows the old price struck through.
+- **Removed from HOME_SPEC:** categories, gift section, Golden Feather collection, #veerla_at_home gallery, newsletter. Categories may return as filters/tabs on the products page.
+- **Products page** (`/products`) lists all products; reads `?tag=offers` and `?sort=` from the nav links.
+- **Proposed, awaiting owner confirmation:** customer reviews tied to products (only after a confirmed order, published after owner approval) + a home "reviews" slider with owner-picked reviews after "How your order works".

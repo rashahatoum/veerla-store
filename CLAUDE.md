@@ -43,7 +43,8 @@ Do not put secrets, passwords, tokens, real customer details or private phone nu
 - Match the supplied VEERLA brand reference: premium, feminine, warm, soft, understated; feather and delicate butterfly motifs used sparingly.
 - **Home page source of truth:** `.local-docs/HOME_SPEC.md` + `.local-docs/design-reference/*.dc.html` + the owner's annotated screenshots (owner notes win on conflict). Brand images live in `public/assets/imgs/veerla/` (the spec's `public/images/veerla/` path is outdated).
 - Palette: tokens from HOME_SPEC §2 in `src/app/globals.css` (`plum-950…700`, `mauve-600/500`, `gold-500/300/700`, `nude-100`, `ivory`, …). Gold `#C9A46C` is never text on light backgrounds — use `gold-700`.
-- Typography: Amiri (Arabic headings), IBM Plex Sans Arabic (body), Cinzel (small spaced Latin labels), Cormorant Garamond italic (soft English phrases).
+- Typography (D-005): Aref Ruqaa (Arabic headings), Cairo (body/UI, both languages), Cormorant Garamond (English headings + soft italic phrases), Cinzel (small spaced Latin labels).
+- Shared UI primitives live in `src/components/ui/` (Button, IconButton, Card, SectionHeading): reuse them instead of re-styling buttons/cards per section.
 - Motion: CSS only (`src/styles/motion.css`), no animation libraries; always honour `prefers-reduced-motion`; content visible without JS.
 - Theme: all colors and font roles in the `@theme` blocks of `src/app/globals.css` (font files in `src/app/fonts.ts`). **Tailwind spacing unit is 1px** (`p-16` = 16px) — see DEVELOPMENT_GUIDELINES.md → Styling.
 - Dev machine: the project is on a mechanical HDD; `turbopackFileSystemCacheForDev` is disabled in `next.config.ts` to stop disk thrashing. Expect slower first compiles; verify visuals with a production build (`next build && next start`) when in doubt.
