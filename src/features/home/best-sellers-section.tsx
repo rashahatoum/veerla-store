@@ -1,6 +1,6 @@
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
 import type { ProductSummary } from "@/types/catalog";
-import { ProductsSection } from "./products-section";
+import { ProductsSection } from "@/components/commerce/products-section";
 
 /** Owner-picked, ranked in the chosen order (HomeContent.best_sellers). */
 export async function BestSellersSection({ products }: { products: ProductSummary[] }) {

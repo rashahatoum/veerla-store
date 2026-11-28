@@ -1,6 +1,6 @@
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
 import type { ProductSummary } from "@/types/catalog";
-import { ProductsSection } from "./products-section";
+import { ProductsSection } from "@/components/commerce/products-section";
 
 /** Owner-picked, in order (HomeContent.new_arrivals), as a slider. */
 export async function NewArrivals({ products }: { products: ProductSummary[] }) {

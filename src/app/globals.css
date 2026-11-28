@@ -88,3 +88,11 @@ html[data-currency="syp"] [data-price="usd"] {
 html {
   scroll-behavior: smooth;
 }
+
+/* Product page on phones: leave room for the fixed "add to bag" bar so it
+   never covers the end of the footer. */
+@media (width < 64rem) {
+  body:has([data-sticky-buy]) {
+    padding-bottom: 72px;
+  }
+}
