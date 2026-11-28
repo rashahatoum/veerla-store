@@ -21,10 +21,14 @@ Last updated: 2026-11-23
 - Footer (D-006): `SiteFooter` reads `getPublicSettings()` (`src/types/settings.ts`, tag `settings`): social buttons, WhatsApp, returns window, enabled payment/fulfillment info lines, centered copyright + credit; `SiteSwitches` shared by header and mobile menu. Legacy theme aliases and the old text `Logo` removed.
 - Mobile header: search / wishlist / bag at the start, logo centered (store pages), menu at the end; the menu sheet opens from the end side. Phones get a CSS announcement ticker.
 
+- Product page (Phase 3, 80%): gallery per color (swipe on phones, 2-column grid on desktop), color in `?color=`, size radios with sold-out/low-stock states, size guide popover (sample chart), fit note, description / fabric & care / delivery-payment-returns accordions, product reviews with rating summary, related products slider, sticky add-to-bag bar on phones. "Add to bag" validates the size; adding to the cart comes in Phase 4.
+
+- Real photos (2026-11-28): `crossover-hood-set` (navy 4, beige 5) and new `rose-set` (rose pink 5, white & gold 5), 1500×2000 WebP, organised as `public/assets/imgs/products/<product-slug>/<color-slug>-NN.<ext>`; old collages moved to the same layout. Color switching verified (URL, gallery, per-color stock). On desktop an odd-sized gallery lets the main photo span both columns.
+
 ## Next steps
-1. Owner review of the footer.
-2. Product detail page (gallery per color, sizes, reviews), cart, checkout → WhatsApp (Phases 3–5).
-4. Agree the image spec; open questions in `BACKEND_REQUIREMENTS.md` §13.
+1. Owner review of the product page; owner to send the real size chart (and photos for the remaining products).
+2. Phase 4: cart + checkout + WhatsApp handoff.
+3. Then catalog filters + search (Phases 2, 5), dashboard (6–8). Open questions in `BACKEND_REQUIREMENTS.md` §13 (returns details deferred by the owner).
 
 ## Known issues / notes
 - `/[lang]/products/[slug]`, `/search`, `/wishlist`, `/cart` are not built yet (404).

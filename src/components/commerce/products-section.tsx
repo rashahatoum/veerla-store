@@ -23,7 +23,7 @@ type Props = {
 // 2 cards on phones, 3 on tablets, 4 on desktop — same for grid and carousel.
 const CARD_SIZES = "(min-width: 1024px) 24vw, (min-width: 640px) 32vw, 50vw";
 
-/** Home section that shows products (Offers, Best sellers, New arrivals). */
+/** Section that shows products (home: Offers, Best sellers, New arrivals; product page: related). */
 export async function ProductsSection({
   id,
   eyebrow,

@@ -1,6 +1,6 @@
 import { getDictionary, getLocale } from "@/i18n/get-dictionary";
 import type { ProductSummary } from "@/types/catalog";
-import { ProductsSection } from "./products-section";
+import { ProductsSection } from "@/components/commerce/products-section";
 
 /** Owner-picked offers (HomeContent.offers), as a grid. The page hides it when off or empty. */
 export async function OffersSection({ products }: { products: ProductSummary[] }) {

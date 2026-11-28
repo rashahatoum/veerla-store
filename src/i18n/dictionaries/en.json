@@ -87,6 +87,29 @@
     },
     "empty": "No products here right now — check back soon."
   },
+  "productPage": {
+    "breadcrumb": "Breadcrumb",
+    "home": "Home",
+    "color": "Color",
+    "size": "Size",
+    "sizeGuide": "Size guide",
+    "measurementsCm": "Body measurements in centimetres.",
+    "chooseSize": "Please choose a size first.",
+    "addToCart": "Add to bag",
+    "lowStockSize": "Only a few left in this size.",
+    "gallery": "Product photos",
+    "imageOf": "Image {n} of {total}",
+    "reviewsCount": "({count})",
+    "noReviews": "No reviews for this piece yet.",
+    "fitNote": "Fit note",
+    "description": "Description",
+    "fabricCare": "Fabric & care",
+    "fabric": "Fabric",
+    "care": "Care",
+    "deliveryPayment": "Delivery, payment & returns",
+    "orderNote": "You send your order on WhatsApp; it is confirmed once we contact you.",
+    "related": "You may also like"
+  },
   "carousel": {
     "previous": "Previous",
     "next": "Next"

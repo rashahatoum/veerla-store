@@ -87,6 +87,29 @@
     },
     "empty": "ما في منتجات هون حالياً، رجعي شوفي قريباً."
   },
+  "productPage": {
+    "breadcrumb": "مسار التصفح",
+    "home": "الرئيسية",
+    "color": "اللون",
+    "size": "المقاس",
+    "sizeGuide": "دليل المقاسات",
+    "measurementsCm": "القياسات بالسنتيمتر، على الجسم.",
+    "chooseSize": "اختاري المقاس أول.",
+    "addToCart": "أضيفي للسلة",
+    "lowStockSize": "باقي قطع قليلة من هالمقاس.",
+    "gallery": "صور المنتج",
+    "imageOf": "صورة {n} من {total}",
+    "reviewsCount": "({count})",
+    "noReviews": "لسا ما في آراء على هالقطعة.",
+    "fitNote": "نصيحة المقاس",
+    "description": "الوصف",
+    "fabricCare": "القماش والعناية",
+    "fabric": "القماش",
+    "care": "العناية",
+    "deliveryPayment": "التوصيل والدفع والإرجاع",
+    "orderNote": "بتبعتي طلبك عالواتساب، وما بيتأكد إلا لما نتواصل معك.",
+    "related": "قد يعجبك أيضاً"
+  },
   "carousel": {
     "previous": "السابق",
     "next": "التالي"

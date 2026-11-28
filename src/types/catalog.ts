@@ -69,6 +69,41 @@ export type ProductSummary = {
   is_new: boolean;
 };
 
+/** One color of a product with its own ordered gallery (first image = main). */
+export type ProductColorGallery = {
+  color: Color;
+  images: ProductImage[];
+};
+
+/** Sellable unit: one color × one size. Public data never exposes stock counts. */
+export type ProductVariant = {
+  id: number;
+  color_id: number;
+  size_id: number;
+  availability: Availability;
+};
+
+/** Body measurements per size, in centimetres. */
+export type SizeChart = {
+  measurements: Localized[];
+  rows: { size: string; values: number[] }[];
+};
+
+/** GET /products/{slug} (BACKEND_REQUIREMENTS §9). */
+export type ProductDetail = Omit<ProductSummary, "colors"> & {
+  description: Localized;
+  fabric: Localized | null;
+  care: Localized | null;
+  /** e.g. "Runs small — take one size up". */
+  fit_note: Localized | null;
+  colors: ProductColorGallery[];
+  sizes: Size[];
+  variants: ProductVariant[];
+  size_chart: SizeChart | null;
+  /** Approved reviews only; null when there are none. */
+  rating: { average: number; count: number } | null;
+};
+
 export const PRODUCT_SORTS = ["newest", "best_selling", "price_asc", "price_desc"] as const;
 export type ProductSort = (typeof PRODUCT_SORTS)[number];
 
