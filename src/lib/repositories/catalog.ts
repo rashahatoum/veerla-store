@@ -1,5 +1,6 @@
 import { cacheLife, cacheTag } from "next/cache";
-import type { ProductListQuery, ProductSummary } from "@/types/catalog";
+import type { ProductDetail, ProductListQuery, ProductSummary } from "@/types/catalog";
+import type { Review } from "@/types/content";
 import { mockCatalogSource } from "./mock/catalog";
 import type { CatalogSource } from "./types";
 
@@ -14,4 +15,26 @@ export async function listProducts(
   cacheLife("hours");
   cacheTag("products");
   return source.listProducts(query);
+}
+
+/** Tags: `products` (any catalog change) + `product:{slug}` (this product). */
+export async function getProduct(slug: string): Promise<ProductDetail | null> {
+  "use cache";
+  cacheLife("hours");
+  cacheTag("products", `product:${slug}`);
+  return source.getProduct(slug);
+}
+
+export async function listRelatedProducts(slug: string, limit = 8): Promise<ProductSummary[]> {
+  "use cache";
+  cacheLife("hours");
+  cacheTag("products");
+  return source.listRelatedProducts(slug, limit);
+}
+
+export async function listProductReviews(slug: string): Promise<Review[]> {
+  "use cache";
+  cacheLife("hours");
+  cacheTag("reviews", `product:${slug}`);
+  return source.listProductReviews(slug);
 }
