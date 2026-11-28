@@ -198,6 +198,7 @@ Public endpoints never expose raw stock counts. Return `availability: in_stock |
 - **Aspect ratio 3:4 (portrait)**, recommended upload ≥ 1500×2000 px. Reject < 900×1200.
 - Store original dimensions (`width`, `height`) — Next.js `<Image>` needs them to avoid layout shift.
 - Images are attached to **product + color**; a gallery is ordered by `sort_order`, first image = main.
+- **[CONFIRMED 2026-11-28]** Owner photo spec: 1500×2000 px (3:4), WebP/JPG, 3–6 photos per color in this order: full look (main) → close details (neckline, pockets, waistband) → full-length pants. Same background and light per color. The frontend mocks mirror this as `public/assets/imgs/products/<product-slug>/<color-slug>-NN.webp`; Laravel may store files however it likes as long as the API returns the ordered gallery per color with `width`, `height` and `alt{ar,en}`.
 - Serve from a stable public URL (local `storage` + CDN or S3-compatible). Next.js handles responsive resizing on delivery; Laravel only stores the converted original.
 
 ## 8. Cache invalidation [PROPOSED]
@@ -218,7 +219,7 @@ Saving the home content (hero, section picks, about text) sends `{ "tags": ["hom
 |---|---|---|
 | GET | `/categories` | Category tree |
 | GET | `/products` | List + filters + sort + pagination + facets |
-| GET | `/products/{slug}` | Product detail: colors, sizes, variants with `availability`, images per color, size chart |
+| GET | `/products/{slug}` | Product detail: `description`, `fabric`, `care`, `fit_note` (all `{ar,en}`, nullable except description), `colors[] {color, images[]}` (ordered gallery per color, first = main), `sizes[]`, `variants[] {id, color_id, size_id, availability}`, `size_chart {measurements[]{ar,en}, rows[]{size, values[] cm}}` (nullable), `rating {average, count}` (approved reviews, null if none), plus all `ProductSummary` fields. Shape: `ProductDetail` in `src/types/catalog.ts`. 404 when not published |
 | GET | `/products/{slug}/related?color=&size=` | Recommendations (§6) |
 | GET | `/search/suggest?q=` | Autocomplete: up to 5 products + 3 categories |
 | POST | `/cart/validate` | Body: `[{variant_id, quantity}]` → current prices, availability, line totals, problems per line |
@@ -258,7 +259,7 @@ Online payment gateway, customer accounts/login, marketer login, multi-warehouse
 
 ## 13. Open questions (owner)
 
-1. ~~Returns/refund policy~~ → answered 2026-11-23: returns accepted **within 48 hours of the customer receiving the order** (setting `returns_window_hours`, default 48). Item conditions (unworn, tags, hygiene items such as underwear) still to confirm.
+1. **Returns/refund policy** — window: 48 hours (setting `returns_window_hours`). **Deferred by the owner (2026-11-28):** the full policy (start of the window, item conditions, non-returnable items such as underwear) will be decided once the product types are final. Keep the model flexible.
 2. **Hosting / domains** — e.g. `veerla.com` (Next.js) + `api.veerla.com` (Laravel)?
 3. **Required customer fields** at checkout (name, phone, city, address?).
 
@@ -268,6 +269,8 @@ Online payment gateway, customer accounts/login, marketer login, multi-warehouse
 
 | Date | Change |
 |---|---|
+| 2026-11-28 | Photo spec confirmed with real owner photos (§7): 1500×2000, 3–6 per color, ordered full look → details → full-length. |
+| 2026-11-28 | Product detail response specified (`ProductDetail`: gallery per color, variants with availability, size chart in cm, fit note, rating summary). Revalidation tags used by the storefront: `products`, `product:{slug}`, `reviews`. Returns policy details deferred by the owner. |
 | 2026-11-23 | Returns: 48 hours from receipt (`returns_window_hours`). `GET /settings/public` now specified (WhatsApp number, social links, enabled payment/fulfillment methods, returns window) with the `settings` revalidation tag; admin settings gain social links + returns window. |
 | 2026-11-23 | About section gains an owner-managed `image` (4:5, 1200×1500) with `alt{ar,en}`; upload endpoint `POST /admin/storefront/home/about-image`. |
 | 2026-11-23 | `GET /products` gains `tag=offers`. `GET /storefront/home` gains `reviews {enabled, items[]}` (shape: `Review` in `src/types/content.ts`). |
